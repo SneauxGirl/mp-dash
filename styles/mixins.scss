@@ -1,0 +1,115 @@
+@mixin panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    rgba(12, 14, 20, 0.96),
+    rgba(8, 10, 14, 0.94)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 0 30px rgba(255, 215, 92, 0.03),
+    var(--shadow-lg);
+  backdrop-filter: blur(10px);
+}
+
+@mixin panelOverlay {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 12%, rgba(141, 252, 114, 0.08), transparent 22%),
+      radial-gradient(circle at 80% 10%, rgba(255, 215, 92, 0.08), transparent 20%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+      inset 0 0 40px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+}
+
+@mixin glassPanel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+
+  background: linear-gradient(
+    180deg,
+    rgba(12, 14, 20, 0.88),
+    rgba(8, 10, 14, 0.82)
+  );
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 0 30px rgba(255, 215, 92, 0.04),
+    0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+@mixin glassOverlay {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(141, 252, 114, 0.08), transparent 25%),
+      radial-gradient(circle at 80% 0%, rgba(255, 215, 92, 0.08), transparent 25%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+      inset 0 0 40px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+  }
+}
+
+@mixin topGlow {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 215, 92, 0.9),
+      rgba(141, 252, 114, 0.8),
+      transparent
+    );
+  }
+}
+
+@mixin topline {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 215, 92, 0.85),
+      rgba(141, 252, 114, 0.75),
+      transparent
+    );
+  }
+}

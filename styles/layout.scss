@@ -1,0 +1,110 @@
+@use "mixins" as *;
+
+.panel {
+  @include glassPanel;
+  @include glassOverlay;
+}
+
+.panelTopline {
+  @include topGlow;
+}
+
+.panelContent {
+  position: relative;
+  z-index: 1;
+  padding: 18px;
+}
+
+.dashboardShell {
+  display: flex;
+  min-height: 100vh;
+  gap: 22px;
+  padding: 18px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--content-gap);
+}
+
+.sidebar {
+  width: 260px; /* or whatever you were using */
+  flex-shrink: 0;
+  background: red;
+}
+
+.sidebarInner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.topStrip,
+.kpiGrid > .panel,
+.contentRow .panel {
+  padding: 18px;
+}
+
+.topStrip {
+  min-height: var(--top-strip-height);
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.contentRow {
+  display: flex;
+  gap: var(--content-gap);
+}
+
+.colExpense {
+  flex: 0.8;
+}
+
+.colExpense > .panel {
+  min-height: 100%;
+}
+
+.colMain {
+  flex: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-gap);
+}
+
+.colSide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-gap);
+}
+
+.colMain,
+.colSide {
+  min-width: 0;
+}
+
+
+/* Responsive */
+@media (max-width: 1280px) {
+  .kpiGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contentRow {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 860px) {
+  .topStrip,
+  .kpiGrid > .panel,
+  .contentRow .panel {
+    padding: 16px;
+  }
+}

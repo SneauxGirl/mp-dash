@@ -1,0 +1,18 @@
+@use "variables";
+@use "mixins";
+@use "base";
+@use "layout";
+
+html,
+body {
+  min-height: 100%;
+  font-family: var(--font-sans), sans-serif;
+}
+
+body {
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(2, 3, 4, 0.25), rgba(2, 3, 4, 0.25)),
+    url("/MPD-bkg.png") center / cover no-repeat;
+  background-attachment: fixed;
+}
