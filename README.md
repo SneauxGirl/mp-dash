@@ -1,6 +1,6 @@
 # Mr Pops Dashboard
 
-This is a responsive dashboard UI for an SMB operating across live service, retail and ecommerce spaces.
+This is a responsive dashboard UI for an SMB operating across live service, retail and e-commerce spaces.
 
 It partners at-a-glance overviews with agentic assistance, turning data points into action items without lag or loss.
 

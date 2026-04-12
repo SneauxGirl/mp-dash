@@ -1,0 +1,165 @@
+.topProducts {
+    min-width: 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.sub {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.controls {
+  display: flex;
+  align-self: flex-end;
+  gap: 8px;
+}
+
+.datePill,
+.modePill {
+  align-content: center;
+  height: 40px; 
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+}
+
+.datePill {
+  border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,0.03);
+}
+
+.modePill {
+  border: 1px solid rgba(200,255,90,0.3);
+  color: var(--green);
+}
+
+/* Table */
+
+.tableWrap {
+  border-radius: 18px;
+  border: 1px solid rgba(255,215,92,0.14);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tableWrap::-webkit-scrollbar {
+  display: none;
+}
+
+.tableHead,
+.row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.8fr 0.8fr 1.2fr 0.8fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.tableHead {
+  padding: 12px;
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.tableBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  padding: 12px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.product {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.product strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.product span {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-soft);
+  font-size: 0.84rem;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--green), var(--gold));
+}
+
+.dist {
+  color: var(--gold);
+}
+
+.sales,
+.revenue {
+  font-weight: 600;
+}
+
+.growth {
+  font-weight: 600;
+}
+
+.up {
+  color: var(--green);
+}
+
+.down {
+  color: var(--gold);
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+}
+
+.good {
+  border: 1px solid rgba(200,255,90,0.3);
+  color: var(--green);
+}
+
+.muted {
+  border: 1px solid rgba(255,215,92,0.3);
+  color: var(--gold);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.link {
+  background: none;
+  border: none;
+  color: var(--green);
+  cursor: pointer;
+}

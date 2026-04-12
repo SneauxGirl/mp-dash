@@ -16,3 +16,9 @@ body {
     url("/MPD-bkg.png") center / cover no-repeat;
   background-attachment: fixed;
 }
+
+.colMain {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

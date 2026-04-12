@@ -1,0 +1,285 @@
+.revenueByMonth {
+  min-height: 40%;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.title {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 215, 92, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.015)
+  );
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 0 18px rgba(255, 215, 92, 0.04);
+  cursor: pointer;
+}
+
+.chartWrap {
+  position: relative;
+  min-height: 360px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 215, 92, 0.16);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    inset 0 0 24px rgba(255, 215, 92, 0.02);
+  padding: 20px 20px 12px 64px;
+  overflow: hidden;
+}
+
+.chartWrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 215, 92, 0),
+    rgba(255, 215, 92, 0.92),
+    rgba(200, 255, 90, 0.85),
+    rgba(255, 215, 92, 0)
+  );
+  box-shadow: 0 0 14px rgba(255, 215, 92, 0.16);
+  pointer-events: none;
+}
+
+.chartGrid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      transparent calc(20% - 1px),
+      rgba(255, 255, 255, 0.05) 20%,
+      transparent calc(20% + 1px)
+    ),
+    linear-gradient(
+      transparent calc(40% - 1px),
+      rgba(255, 255, 255, 0.05) 40%,
+      transparent calc(40% + 1px)
+    ),
+    linear-gradient(
+      transparent calc(60% - 1px),
+      rgba(255, 255, 255, 0.05) 60%,
+      transparent calc(60% + 1px)
+    ),
+    linear-gradient(
+      transparent calc(80% - 1px),
+      rgba(255, 255, 255, 0.05) 80%,
+      transparent calc(80% + 1px)
+    );
+  pointer-events: none;
+}
+
+.yAxis {
+  position: absolute;
+  top: 34px;
+  left: 18px;
+  bottom: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+.plot {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  align-items: end;
+}
+
+.month {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  gap: 12px;
+  min-width: 0;
+}
+
+//Figure out round and square tops for consistency #TODO
+.stack {
+  width: 100%;
+  max-width: 46px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 16px rgba(255, 215, 92, 0.05);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.seg {
+  display: block;
+  width: 100%;
+  position: relative;
+  border-radius: 0;
+}
+
+.seg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  pointer-events: none;
+}
+
+.segEvents {
+  background: linear-gradient(180deg, #ffe98c, #ffd75c 34%, #ffbf3c 100%);
+  box-shadow: 0 0 14px rgba(255, 215, 92, 0.12);
+}
+
+.segRetail {
+  background: linear-gradient(180deg, #dfff88, #c8ff5a 40%, #aee63a 100%);
+  box-shadow: 0 0 14px rgba(200, 255, 90, 0.1);
+}
+
+.segStands {
+  background: linear-gradient(180deg, #aaf98a, #8dfc72 42%, #5db84a 100%);
+  box-shadow: 0 0 14px rgba(141, 252, 114, 0.08);
+}
+
+.segOnline {
+  background: linear-gradient(180deg, #7cb946, #5d8d2a 50%, #3f6318 100%);
+  box-shadow: 0 0 12px rgba(110, 168, 60, 0.08);
+}
+
+.label {
+  color: var(--text);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.legend {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding-top: 16px;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legendSwatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.legendSwatchEvents {
+  background: linear-gradient(180deg, #ffe98c, #ffd75c 34%, #ffbf3c 100%);
+}
+
+.legendSwatchRetail {
+  background: linear-gradient(180deg, #dfff88, #c8ff5a 40%, #aee63a 100%);
+}
+
+.legendSwatchStands {
+  background: linear-gradient(180deg, #aaf98a, #8dfc72 42%, #5db84a 100%);
+}
+
+.legendSwatchOnline {
+  background: linear-gradient(180deg, #7cb946, #5d8d2a 50%, #3f6318 100%);
+}
+
+@media (max-width: 980px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .chartWrap {
+    padding-left: 52px;
+  }
+
+  .plot {
+    gap: 10px;
+  }
+
+  .stack {
+    max-width: 36px;
+  }
+}
+
+@media (max-width: 720px) {
+  .chartWrap {
+    min-height: 300px;
+    padding: 18px 12px 10px 44px;
+  }
+
+  .yAxis {
+    left: 10px;
+    font-size: 0.78rem;
+  }
+
+  .plot {
+    gap: 6px;
+  }
+
+  .stack {
+    max-width: 24px;
+    min-height: 210px;
+  }
+
+  .label {
+    font-size: 0.78rem;
+  }
+
+  .legend {
+    justify-content: flex-start;
+    gap: 14px;
+    font-size: 0.84rem;
+  }
+}

@@ -1,4 +1,9 @@
 import DashboardSidebar from "@/components/layout/DashboardSidebar";
+import ExpenseGroups from "@/components/dashboard/ExpenseGroups";
+import RevenueByMonth from "@/components/dashboard/RevenueByMonth";
+import MonthlyTargets from "@/components/dashboard/MonthlyTargets";
+import Notes from "@/components/dashboard/Notes";
+import TopProducts from "@/components/dashboard/TopProducts";
 
 export default function HomePage() {
   return (
@@ -57,38 +62,21 @@ export default function HomePage() {
             </article>
           </section>
 
-          <section className="contentRow" aria-label="Dashboard content">
-            <div className="colExpense">
-              <article className="panel">
-                <div className="panelTopline" />
-                <div className="panelContent">EXPENSE GROUPS SLOT</div>
-              </article>
-            </div>
+<section className="contentRow" aria-label="Dashboard content">
+  <div className="colExpense">
+    <ExpenseGroups />
+  </div>
 
-            <div className="col-main">
-              <article className="panel">
-                <div className="panelTopline" />
-                <div className="panel-content">REVENUE BY MONTH SLOT</div>
-              </article>
+  <div className="colMain">
+  <RevenueByMonth />
+  <TopProducts />
+</div>
 
-              <article className="panel">
-                <div className="panelTopline" />
-                <div className="panelContent">TOP PRODUCTS SLOT</div>
-              </article>
-            </div>
-
-            <div className="colSide">
-              <article className="panel">
-                <div className="panelTopline" />
-                <div className="panelContent">NOTES / ACTION CONSOLE SLOT</div>
-              </article>
-
-              <article className="panel">
-                <div className="panelTopline" />
-                <div className="panelContent">MONTHLY TARGETS SLOT</div>
-              </article>
-            </div>
-          </section>
+  <div className="colSide">
+    <Notes />
+    <MonthlyTargets />
+  </div>
+</section>
         </main>
       </div>
     </>
