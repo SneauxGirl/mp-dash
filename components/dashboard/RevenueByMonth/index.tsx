@@ -60,22 +60,20 @@ export default function RevenueByMonth() {
             {revenueData.map((item) => (
               <div key={item.month} className={styles.month}>
                 <div className={styles.stack}>
+                  <div className={styles.stackFill}>
                   <span
                     className={`${styles.seg} ${styles.segEvents}`}
-                    style={{ height: `${item.events}px` }}
-                  />
+                    style={{ height: `${item.events}px` }} />
                   <span
                     className={`${styles.seg} ${styles.segRetail}`}
-                    style={{ height: `${item.retail}px` }}
-                  />
+                    style={{ height: `${item.retail}px` }} />
                   <span
                     className={`${styles.seg} ${styles.segStands}`}
-                    style={{ height: `${item.stands}px` }}
-                  />
+                    style={{ height: `${item.stands}px` }} />
                   <span
                     className={`${styles.seg} ${styles.segOnline}`}
-                    style={{ height: `${item.online}px` }}
-                  />
+                    style={{ height: `${item.online}px` }} />
+                  </div>  
                 </div>
 
                 <span className={styles.label}>{item.month}</span>

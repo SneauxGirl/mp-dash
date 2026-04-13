@@ -3,6 +3,10 @@
   --bg-base: #040507;
   --bg-deep: #020304;
 
+  --app-bg:
+    linear-gradient(180deg, rgba(2, 3, 4, 0.25), rgba(2, 3, 4, 0.25)),
+    url("/MPD-bkg.png") center / cover no-repeat;
+
   /* Panels */
   --panel-strong: rgba(12, 14, 20, 0.96);
   --panel: rgba(10, 12, 16, 0.92);
@@ -12,6 +16,27 @@
   --text: #f6f3ea;
   --text-soft: rgba(246, 243, 234, 0.72);
   --text-faint: rgba(246, 243, 234, 0.45);
+
+  /* Type */
+  --font-size-xs: 1rem;
+  --font-size-sm: 1.1rem;
+  --font-size-md: 1.2rem;
+  --font-size-lg: 1.35rem;
+  --font-size-xl: 1.65rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.4rem;
+  --font-size-4xl: 3rem;
+
+  /* Line heights */
+  --line-tight: 1.1;
+  --line-normal: 1.35;
+  --line-relaxed: 1.5;
+
+  /* Letter spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.16em;
 
   /* Accent */
   --green: #c8ff5a;
@@ -36,6 +61,16 @@
 
   /* Layout */
   --sidebar-width: 290px;
-  --content-gap: 18px;
+  --content-gap: var(--space-5);
   --top-strip-height: 72px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 18px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 28px;
 }

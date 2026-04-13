@@ -4,6 +4,7 @@ import RevenueByMonth from "@/components/dashboard/RevenueByMonth";
 import MonthlyTargets from "@/components/dashboard/MonthlyTargets";
 import Notes from "@/components/dashboard/Notes";
 import TopProducts from "@/components/dashboard/TopProducts";
+import TopStrip from "@/components/dashboard/TopStrip";
 
 export default function HomePage() {
   return (
@@ -13,13 +14,8 @@ export default function HomePage() {
       <div className="dashboardShell">
         <DashboardSidebar />
         <main className="main">
-          <section className="topStrip panel" aria-label="Upcoming events and weather">
-            <div className="panelTopline" />
-            <div className="panelContent">
-              TOP STRIP SLOT
-            </div>
-          </section>
-
+<TopStrip />
+<div className="mainScroll">
           <section className="kpiGrid" aria-label="At a glance metrics">
             <article className="panel">
               <div className="panelTopline" />
@@ -77,6 +73,7 @@ export default function HomePage() {
     <MonthlyTargets />
   </div>
 </section>
+</div>
         </main>
       </div>
     </>

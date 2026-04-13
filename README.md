@@ -4,9 +4,14 @@ This is a responsive dashboard UI for an SMB operating across live service, reta
 
 It partners at-a-glance overviews with agentic assistance, turning data points into action items without lag or loss.
 
-Currently in Phase 1: Dashboard Layout
+![MP Dashboard](./docs/ReferencePhotos/MDash-Phase2.png)
 
-![MP Dashboard](./docs/docs/images/MPDash-Phase1.png)
+## Build Stage Notes
+Phase 1: Create concept, draft components and layout
+**Phase 2:** Plug in components and finalize globals
+- KPI component is built to match, but not linked in Page yet.
+Phase 3: Standardize content, address responsiveness
+Phase 4: Standardize dummy data and attach logic
 
 ## Tech Stack
 - Next.js

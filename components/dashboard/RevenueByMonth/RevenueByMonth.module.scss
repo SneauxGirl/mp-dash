@@ -16,7 +16,7 @@
 }
 
 .title {
-  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  font-size: var(--font-size-xl);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -39,7 +39,8 @@
     rgba(255, 255, 255, 0.015)
   );
   color: var(--text-soft);
-  font-size: 0.82rem;
+  font-size: var(--font-size-xs);
+  line-height: 1;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.03),
     0 0 18px rgba(255, 215, 92, 0.04);
@@ -117,7 +118,7 @@
   flex-direction: column;
   justify-content: space-between;
   color: var(--text-soft);
-  font-size: 0.9rem;
+  font-size: var(--font-size-xs);
 }
 
 .plot {
@@ -137,27 +138,33 @@
   min-width: 0;
 }
 
-//Figure out round and square tops for consistency #TODO
 .stack {
   width: 100%;
   max-width: 46px;
   min-height: 250px;
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-start;
-  border-radius: 12px 12px 0 0;
-  overflow: hidden;
+  align-items: flex-end;
+  justify-content: center;
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.04),
     0 0 16px rgba(255, 215, 92, 0.05);
   background: rgba(255, 255, 255, 0.015);
 }
 
+.stackFill {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
+
 .seg {
   display: block;
   width: 100%;
   position: relative;
-  border-radius: 0;
+  flex-shrink: 0;
 }
 
 .seg::after {
@@ -190,7 +197,7 @@
 
 .label {
   color: var(--text);
-  font-size: 0.95rem;
+  font-size: var(--font-size-xs);
   letter-spacing: 0.02em;
 }
 
@@ -202,7 +209,7 @@
   justify-content: center;
   padding-top: 16px;
   color: var(--text-soft);
-  font-size: 0.92rem;
+  font-size: var(--font-size-xs);
 }
 
 .legendItem {
@@ -261,7 +268,7 @@
 
   .yAxis {
     left: 10px;
-    font-size: 0.78rem;
+    font-size: var(--font-size-xs);
   }
 
   .plot {
@@ -274,12 +281,12 @@
   }
 
   .label {
-    font-size: 0.78rem;
+    font-size: var(--font-size-xs);
   }
 
   .legend {
     justify-content: flex-start;
     gap: 14px;
-    font-size: 0.84rem;
+    font-size: var(--font-size-xs);
   }
 }

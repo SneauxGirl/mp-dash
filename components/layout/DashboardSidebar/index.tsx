@@ -13,7 +13,9 @@ export default function DashboardSidebar() {
             <div className="eyebrow">Mr. Pops</div>
             <div className={styles.brandTitle}>Dashboard</div>
           </div>
-          <div className={styles.brandToggle} aria-hidden="true" />
+          <div className="controlSquare controlSquare--left" aria-hidden="true" >
+  ‹
+</div>
         </div>
 
         <nav className={styles.nav} aria-label="Sidebar navigation">

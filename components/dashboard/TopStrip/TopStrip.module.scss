@@ -1,0 +1,177 @@
+.topStrip {
+  min-height: 112px;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.7fr 1.4fr;
+  gap: 18px;
+  align-items: center;
+  min-height: 100%;
+}
+
+.eventsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 350px;
+  gap: 10px;
+}
+
+.eventsBlock,
+.nowBlock,
+.tickerBlock {
+  min-width: 0;
+}
+
+/* EVENTS */
+
+.eventsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eventItem {
+  font-size: var(--font-size-sm);
+  line-height: 1.35;
+  color: var(--text-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eventPrimary {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* INDICATOR (now using global controlSquare, so just behavior) */
+
+.moreIndicator {
+  transform: rotate(-90deg);
+  opacity: 0.85;
+}
+
+/* NOW BLOCK */
+
+.nowBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.nowTopRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.dateText {
+  color: var(--text);
+}
+
+.divider {
+  opacity: 0.4;
+}
+
+.timeText {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+/* WEATHER */
+
+.weatherRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.weatherIcon {
+  font-size: var(--font-size-xs);
+}
+
+.weatherText {
+  font-size: var(--font-size-xs);
+  color: var(--text-soft);
+}
+
+/* TICKER */
+
+.tickerViewport {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.tickerTrack {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  min-width: max-content;
+  animation: tickerScroll 24s linear infinite;
+}
+
+.tickerItem {
+  position: relative;
+  font-size: var(--font-size-xs);
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+.tickerItem::after {
+  content: "•";
+  position: absolute;
+  right: -16px;
+  color: rgba(255, 215, 92, 0.55);
+}
+
+.tickerItem:last-child::after {
+  content: "•";
+}
+
+@keyframes tickerScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 980px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .nowBlock {
+    align-items: flex-start;
+    text-align: left;
+    padding-inline: 0;
+  }
+
+  .tickerViewport {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}

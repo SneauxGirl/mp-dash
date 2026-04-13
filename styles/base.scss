@@ -2,6 +2,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green) var(--bg-deep);
 }
 
 html,
@@ -12,6 +14,8 @@ body {
 
 body {
   position: relative;
+  font-weight: 450;
+  line-height: var(--line-normal);
 }
 
 /* Background overlay */
@@ -26,7 +30,7 @@ body::before {
       rgba(2, 3, 4, 0.9)
     );
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 
 /* Grid overlay */
@@ -40,7 +44,35 @@ body::after {
   background-size: 80px 80px;
   opacity: 0.25;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
+}
+
+/* Webkit (Chrome, Edge, Safari) */
+*::-webkit-scrollbar {
+  width: 10px;
+  box-shadow: 0 0 6px rgba(200, 255, 90, 0.2);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--green),
+    var(--gold)
+  );
+  border-radius: 999px;
+  border: 2px solid var(--bg-deep);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--green-2),
+    var(--gold-2)
+  );
 }
 
 /* Edge glow */
@@ -58,3 +90,4 @@ body::after {
     );
   opacity: 0.4;
 }
+

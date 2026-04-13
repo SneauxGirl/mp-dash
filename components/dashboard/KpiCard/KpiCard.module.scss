@@ -1,0 +1,99 @@
+.kpiCard {
+  min-height: 158px;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.iconWrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(141, 252, 114, 0.95), rgba(255, 215, 92, 0.9));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 0 20px rgba(141, 252, 114, 0.22),
+    0 10px 24px rgba(0, 0, 0, 0.24);
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(10, 12, 16, 0.86);
+}
+
+.icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trend {
+  padding-top: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.trendUp {
+  color: var(--green);
+  text-shadow:
+    0 0 10px rgba(141, 252, 114, 0.26),
+    0 0 22px rgba(141, 252, 114, 0.14);
+}
+
+.trendDown {
+  color: var(--gold);
+  text-shadow:
+    0 0 10px rgba(255, 215, 92, 0.24),
+    0 0 20px rgba(255, 215, 92, 0.12);
+}
+
+.value {
+  margin-bottom: 10px;
+  font-size: clamp(2rem, 2.4vw, 2.65rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+  color: var(--text);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.03),
+    0 0 18px rgba(255, 215, 92, 0.06);
+}
+
+.label {
+  margin-bottom: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.meta {
+  font-size: 0.83rem;
+  color: var(--text-faint);
+  letter-spacing: -0.01em;
+}
