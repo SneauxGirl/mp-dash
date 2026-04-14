@@ -12,7 +12,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: var(--space-5);
 }
 
 .iconWrap {
@@ -51,8 +51,8 @@
 }
 
 .trend {
-  padding-top: 4px;
-  font-size: 1rem;
+  padding-top: var(--space-1);
+  font-size: var(--font-size-sm);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.01em;
@@ -73,7 +73,7 @@
 }
 
 .value {
-  margin-bottom: 10px;
+  margin-bottom: var(--space-3);
   font-size: clamp(2rem, 2.4vw, 2.65rem);
   font-weight: 700;
   line-height: 0.94;
@@ -85,15 +85,15 @@
 }
 
 .label {
-  margin-bottom: 4px;
-  font-size: 1rem;
+  margin-bottom: var(--space-1);
+  font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--text);
   letter-spacing: -0.01em;
 }
 
 .meta {
-  font-size: 0.83rem;
+  font-size: var(--font-size-xs);
   color: var(--text-faint);
   letter-spacing: -0.01em;
 }

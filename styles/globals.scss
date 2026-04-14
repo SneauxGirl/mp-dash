@@ -1,7 +1,6 @@
 @use "variables";
 @use "mixins";
 @use "base";
-@use "layout";
 
 html,
 body {
@@ -19,48 +18,23 @@ body {
 
 .text-meta {
   font-size: var(--font-size-xs);
-  text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  font-weight: 600;
+  font-weight: 500;
   line-height: var(--line-tight);
 }
 
-/* Dashboard */
-.dashboardShell {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  height: 100vh;
-  gap: var(--space-7);
-  padding: var(--space-5);
-  overflow: hidden;
+.eyebrow {
+  font-size: var(--font-size-2xs);
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  font-weight: 400;
+  line-height: var(--line-tight);
 }
 
-.main {
-  flex: 1;
-  min-width: 0;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--content-gap);
-  overflow: hidden;
-}
-
-.mainScroll {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: var(--content-gap);
-  padding-right: var(--space-1);
-}
-
-.colMain {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
+.text-control {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-tight);
 }
 
 /* Control Square */
@@ -83,7 +57,7 @@ body {
 .controlSquare--small {
   width: 26px;
   height: 26px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
 }
 
 .controlSquare:hover {

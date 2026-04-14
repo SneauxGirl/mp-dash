@@ -8,8 +8,8 @@ export default function Notes() {
       <div className={`panelContent ${styles.inner}`}>
         <header className={styles.header}>
           <div>
-            <div className="eyebrow">Action Console</div>
-            <h2 className={styles.title}>Notes & To-Dos</h2>
+            <div className="eyebrow">Virtual Assistant</div>
+            <h2 className={styles.title}>Notes & To-dos</h2>
           </div>
 
           <div className={styles.status}>
@@ -25,7 +25,7 @@ export default function Notes() {
           <div className={styles.inputWrap}>
             <textarea
               className={styles.textarea}
-              placeholder="Place an order, email a venue, schedule staff, request data analysis, and more..."
+              placeholder="Update the schedule, place an order, send an email, analyze data and more..."
             />
 
             <div className={styles.actions}>
@@ -38,7 +38,7 @@ export default function Notes() {
               </button>
 
               <button className={styles.primaryBtn}>
-                Organize
+                Submit
               </button>
             </div>
           </div>

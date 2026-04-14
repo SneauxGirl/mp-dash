@@ -12,40 +12,40 @@
 .panelContent {
   position: relative;
   z-index: 1;
-  padding: 18px;
+  gap: var(--space-7);
+padding: var(--space-5);
 }
 
+/* Dashboard */
 .dashboardShell {
-  display: flex;
-  min-height: 100vh;
-  gap: 22px;
-  padding: 18px;
+  position: relative;
   z-index: 1;
+  display: flex;
+  height: 100vh;
+  gap: var(--space-7);
+  padding: var(--space-5);
+  overflow: hidden;
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
   flex: 1;
-  gap: var(--content-gap);
-}
-
-.sidebar {
-  width: 260px; /* or whatever you were using */
-  flex-shrink: 0;
-  background: red;
-}
-
-.sidebarInner {
+  min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  gap: var(--content-gap);
+  overflow: hidden;
 }
 
-.topStrip,
-.kpiGrid > .panel,
-.contentRow .panel {
-  padding: 18px;
+.mainScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-gap);
+  padding-right: var(--space-1);
 }
 
 .topStrip {
@@ -78,6 +78,7 @@
   gap: var(--content-gap);
 }
 
+
 .colSide {
   flex: 1;
   display: flex;
@@ -99,13 +100,5 @@
 
   .contentRow {
     flex-direction: column;
-  }
-}
-
-@media (max-width: 860px) {
-  .topStrip,
-  .kpiGrid > .panel,
-  .contentRow .panel {
-    padding: 16px;
   }
 }

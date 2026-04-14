@@ -5,116 +5,99 @@
 .inner {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: var(--space-5);
 }
 
 .header {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 24px;
-  padding-bottom: 18px;
-  margin-bottom: 4px;
+  gap: var(--space-6);
+  padding-bottom: var(--space-5);
+  margin-bottom: var(--space-1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .title {
   font-size: var(--font-size-xl);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  line-height: var(--line-tight);
+  letter-spacing: var(--tracking-tight);
 }
 
 .subtitle {
-  margin-top: 8px;
+  margin-top: var(--space-2);
   max-width: 52ch;
   color: var(--text-soft);
   font-size: var(--font-size-sm);
-  line-height: 1.5;
+  line-height: var(--line-relaxed);
+}
+
+.headerTotal,
+.ringsPanel,
+.legendPanel,
+.legendItem {
+  border: 1px solid rgba(255, 215, 92, 0.14);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
 .headerTotal {
   min-width: 210px;
-  padding: 16px 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 215, 92, 0.2);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.035),
-    rgba(255, 255, 255, 0.015)
-  );
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    inset 0 0 22px rgba(255, 215, 92, 0.04),
-    0 0 24px rgba(255, 215, 92, 0.12);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+}
+
+.totalLabel,
+.panelTitle,
+.coreLabel {
+  font-size: var(--font-size-2xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  line-height: var(--line-tight);
 }
 
 .totalLabel {
-  font-size: var(--font-size-xs);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  margin-bottom: 6px;
-  line-height: 1.3;
+  margin-bottom: var(--space-2);
 }
 
 .totalValue {
   font-size: var(--font-size-2xl);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--tracking-tight);
 }
 
 .layout {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: var(--space-5);
 }
 
 .ringsPanel,
 .legendPanel {
   position: relative;
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.025),
-    rgba(255, 255, 255, 0.015)
-  );
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    var(--shadow-md);
   overflow: hidden;
-}
-
-.ringsPanel::before,
-.legendPanel::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 215, 92, 0.75),
-    rgba(202, 255, 99, 0.7),
-    transparent
-  );
-  pointer-events: none;
 }
 
 .ringsPanel {
   min-height: 560px;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: var(--space-7);
   background:
-    radial-gradient(circle at center, rgba(255, 215, 92, 0.06), transparent 20%),
-    radial-gradient(circle at center, rgba(142, 247, 120, 0.04), transparent 36%),
+    radial-gradient(circle at center, rgba(255, 215, 92, 0.03), transparent 22%),
+    radial-gradient(circle at center, rgba(142, 247, 120, 0.02), transparent 38%),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.025),
-      rgba(255, 255, 255, 0.015)
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.01)
     );
 }
 
@@ -122,7 +105,7 @@
   position: absolute;
   inset: 28px;
   border-radius: 22px;
-  opacity: 0.28;
+  opacity: 0.16;
   background:
     linear-gradient(transparent 95%, rgba(255, 255, 255, 0.06) 96%),
     linear-gradient(90deg, transparent 95%, rgba(255, 255, 255, 0.05) 96%);
@@ -144,8 +127,8 @@
   position: absolute;
   inset: 20px;
   border-radius: 50%;
-  border: 1px dashed rgba(255, 255, 255, 0.08);
-  opacity: 0.3;
+  border: 1px dashed rgba(255, 255, 255, 0.06);
+  opacity: 0.18;
   pointer-events: none;
 }
 
@@ -155,11 +138,11 @@
   letter-spacing: 0.08em;
   color: var(--text-faint);
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: var(--line-normal);
 }
 
 .gpTop {
-  top: 8px;
+  top: var(--space-2);
   left: 50%;
   transform: translateX(-50%);
 }
@@ -171,7 +154,7 @@
 }
 
 .gpBottom {
-  bottom: 8px;
+  bottom: var(--space-2);
   left: 50%;
   transform: translateX(-50%);
 }
@@ -192,7 +175,7 @@
 .ring {
   display: grid;
   place-items: center;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
 }
 
 .ring::before {
@@ -202,58 +185,54 @@
     conic-gradient(
       from -90deg,
       transparent 0deg 90deg,
-      rgba(255, 255, 255, 0.06) 90deg 360deg
+      rgba(255, 255, 255, 0.045) 90deg 360deg
     ),
     conic-gradient(
       from -90deg,
       transparent 0deg 90deg,
       var(--accent) 90deg calc(90deg + (var(--paid) * 1deg)),
-      color-mix(in srgb, var(--accent) 30%, transparent)
+      color-mix(in srgb, var(--accent) 24%, transparent)
         calc(90deg + (var(--paid) * 1deg))
         calc(90deg + ((var(--paid) + var(--upcoming)) * 1deg)),
-      rgba(255, 255, 255, 0.06)
+      rgba(255, 255, 255, 0.045)
         calc(90deg + ((var(--paid) + var(--upcoming)) * 1deg))
         360deg
     );
-  box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 20%, transparent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .ring::after {
   content: "";
   inset: var(--thickness);
-  background: rgba(8, 10, 14, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(8, 10, 14, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.045);
   box-shadow:
-    inset 0 0 22px rgba(0, 0, 0, 0.36),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    inset 0 0 14px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 .ring1 {
   width: 460px;
   height: 460px;
   --thickness: 34px;
-  filter: drop-shadow(0 0 18px rgba(255, 215, 92, 0.16));
 }
 
 .ring2 {
   width: 356px;
   height: 356px;
   --thickness: 30px;
-  filter: drop-shadow(0 0 16px rgba(142, 247, 120, 0.16));
 }
 
 .ring3 {
   width: 262px;
   height: 262px;
   --thickness: 26px;
-  filter: drop-shadow(0 0 14px rgba(255, 189, 67, 0.16));
 }
 
 .ring4 {
   width: 176px;
   height: 176px;
   --thickness: 22px;
-  filter: drop-shadow(0 0 12px rgba(142, 247, 120, 0.12));
 }
 
 .ringCore {
@@ -266,30 +245,24 @@
   place-items: center;
   text-align: center;
   background:
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08), transparent 35%),
-    linear-gradient(180deg, rgba(16, 18, 24, 0.95), rgba(8, 10, 14, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 35%),
+    linear-gradient(180deg, rgba(16, 18, 24, 0.94), rgba(8, 10, 14, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 0 24px rgba(255, 215, 92, 0.08),
-    0 0 0 1px rgba(255, 255, 255, 0.02);
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 0 12px rgba(255, 215, 92, 0.04);
 }
 
 .coreLabel {
   display: block;
-  font-size: var(--font-size-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--text-faint);
-  margin-bottom: 6px;
-  line-height: 1.2;
+  margin-bottom: var(--space-2);
 }
 
 .coreValue {
   display: block;
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-lg);
   font-weight: 700;
-  line-height: 1;
+  line-height: var(--line-tight);
 }
 
 .ringTag {
@@ -297,16 +270,16 @@
   z-index: 3;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(8, 10, 14, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(8, 10, 14, 0.88);
   box-shadow: var(--shadow-md);
   font-size: var(--font-size-xs);
   font-weight: 600;
   color: var(--text);
-  line-height: 1;
+  line-height: var(--line-tight);
   white-space: nowrap;
 }
 
@@ -316,7 +289,7 @@
   height: 9px;
   border-radius: 50%;
   background: var(--tag);
-  box-shadow: 0 0 14px color-mix(in srgb, var(--tag) 40%, transparent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--tag) 24%, transparent);
   flex-shrink: 0;
 }
 
@@ -345,34 +318,22 @@
 }
 
 .panelTitle {
-  margin-bottom: 16px;
-  font-size: var(--font-size-xs);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  line-height: 1.2;
+  margin-bottom: var(--space-4);
 }
 
 .legendList {
   display: grid;
-  gap: 14px;
+  gap: var(--space-3);
 }
 
 .legendItem {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 14px;
+  gap: var(--space-3);
   align-items: center;
   min-height: 88px;
-  padding: 16px;
+  padding: var(--space-4);
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.03),
-    rgba(255, 255, 255, 0.016)
-  );
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 .legendSwatch {
@@ -380,7 +341,7 @@
   height: 16px;
   border-radius: 50%;
   background: var(--swatch);
-  box-shadow: 0 0 18px color-mix(in srgb, var(--swatch) 30%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--swatch) 18%, transparent);
 }
 
 .legendCopy {
@@ -390,14 +351,26 @@
 .legendLabel {
   font-size: var(--font-size-sm);
   font-weight: 600;
-  margin-bottom: 4px;
-  line-height: 1.25;
+  margin-bottom: var(--space-1);
+  line-height: var(--line-tight);
 }
 
 .legendMeta {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   color: var(--text-soft);
-  line-height: 1.35;
+  line-height: var(--line-normal);
+}
+
+.legendPercent,
+.footerNote,
+.dotItem,
+.guidePercent {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-normal);
+}
+
+.legendMeta {
+  color: var(--text-soft);
 }
 
 .legendStats {
@@ -407,40 +380,34 @@
 .legendAmount {
   font-size: var(--font-size-sm);
   font-weight: 700;
-  margin-bottom: 5px;
-  line-height: 1.1;
+  margin-bottom: var(--space-1);
+  line-height: var(--line-tight);
 }
 
 .legendPercent {
-  font-size: var(--font-size-xs);
   color: var(--text-faint);
-  line-height: 1.2;
 }
 
 .footerNote {
-  margin-top: 18px;
-  padding-top: 18px;
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   color: var(--text-soft);
-  font-size: var(--font-size-xs);
-  line-height: 1.55;
 }
 
 .dotKey {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: var(--space-3);
   flex-wrap: wrap;
-  margin-top: 12px;
+  margin-top: var(--space-3);
 }
 
 .dotItem {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
   color: var(--text-soft);
-  font-size: var(--font-size-xs);
-  line-height: 1.3;
 }
 
 .dot {
@@ -448,7 +415,7 @@
   height: 10px;
   border-radius: 50%;
   background: var(--gold);
-  box-shadow: 0 0 12px rgba(255, 215, 92, 0.55);
+  box-shadow: 0 0 8px rgba(255, 215, 92, 0.28);
 }
 
 .upcoming {
@@ -458,7 +425,7 @@
 @media (max-width: 700px) {
   .header {
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
   }
 
   .headerTotal {
@@ -467,7 +434,7 @@
 
   .ringsPanel {
     min-height: 440px;
-    padding: 18px;
+    padding: var(--space-5);
   }
 
   .ringStack {
@@ -504,12 +471,17 @@
     height: 74px;
   }
 
-  .coreLabel {
+  .coreLabel,
+  .guidePercent,
+  .legendPercent,
+  .legendMeta,
+  .dotItem,
+  .footerNote {
     font-size: var(--font-size-xs);
   }
 
   .coreValue {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
   }
 
   .tagProduct {
@@ -530,9 +502,5 @@
   .tagVenues {
     top: 108px;
     left: 18px;
-  }
-
-  .guidePercent {
-    font-size: var(--font-size-xs);
   }
 }

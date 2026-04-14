@@ -19,7 +19,7 @@ export default function DashboardSidebar() {
         </div>
 
         <nav className={styles.nav} aria-label="Sidebar navigation">
-          <a className={`${styles.navItem} ${styles.active}`} href="#">
+          <a className={`${styles.navItem} ${styles.navItemActive}`} href="#">
             <span className={styles.navIcon} aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <path d="M4 20V10" />

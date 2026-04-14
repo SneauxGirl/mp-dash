@@ -32,7 +32,6 @@ export default function MonthlyTargets() {
           <div className={styles.metric}>
             <div className={styles.metricLabel}>Gap</div>
             <div className={styles.metricValue}>-$2,150</div>
-            <div className={styles.deltaPill}>-8.6%</div>
           </div>
         </div>
 
