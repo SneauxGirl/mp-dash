@@ -44,7 +44,7 @@ export default function TopProducts() {
       <img src={popcorn.src} alt="" className={styles.productIcon} />
     </div>
     <div className={styles.productInfo}>
-      <strong className={styles.productName}>Kettlecorn</strong>
+      <strong className={styles.productName}>Kettle corn</strong>
       <span className={styles.productType}>Food / Retail</span>
     </div>
   </div>
@@ -62,7 +62,7 @@ export default function TopProducts() {
       <img src={popcorn.src} alt="" className={styles.productIcon} />
     </div>
     <div className={styles.productInfo}>
-      <strong className={styles.productName}>Caramel Corn</strong>
+      <strong className={styles.productName}>Caramel corn</strong>
       <span className={styles.productType}>Food / Stadium</span>
     </div>
   </div>
@@ -98,7 +98,7 @@ export default function TopProducts() {
       <img src={cotton.src} alt="" className={styles.productIcon} />
     </div>
     <div className={styles.productInfo}>
-      <strong className={styles.productName}>Cotton Candy</strong>
+      <strong className={styles.productName}>Cotton candy</strong>
       <span className={styles.productType}>Food / Stadium</span>
     </div>
   </div>

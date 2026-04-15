@@ -1,45 +1,59 @@
 import styles from "./KpiCard.module.scss";
 import type { ReactNode } from "react";
 
+export type KPITrend = "up" | "down" | "neutral";
+
 type KpiCardProps = {
   icon: ReactNode;
-  trend: string;
-  trendDirection: "up" | "down";
+  trend: KPITrend;
   value: string;
-  label: string;
-  meta: string;
+  eyebrow: string;
+  sub: string;
 };
 
 export default function KpiCard({
   icon,
   trend,
-  trendDirection,
   value,
-  label,
-  meta,
+  eyebrow,
+  sub,
 }: KpiCardProps) {
+  const trendSymbolMap = {
+    up: "▲",
+    down: "▼",
+    neutral: "•",
+  } as const;
+
+  const trendClass =
+    trend === "down"
+      ? styles.trendDown
+      : trend === "neutral"
+      ? styles.trendNeutral
+      : styles.trendUp;
+
   return (
     <article className={`panel ${styles.kpiCard}`}>
       <div className="panelTopline" />
 
       <div className={`panelContent ${styles.inner}`}>
-        <div className={styles.top}>
-          <div className={styles.iconWrap} aria-hidden="true">
-            <span className={styles.icon}>{icon}</span>
+        <div className={styles.header}>
+          <div className={styles.headerMain}>
+            <div className={styles.statusBadge} aria-hidden="true">
+              <span className={styles.iconGlyph}>{icon ?? null}</span>
+            </div>
+
+            <div className="eyebrow">{eyebrow}</div>
           </div>
 
-          <div
-            className={`${styles.trend} ${
-              trendDirection === "up" ? styles.trendUp : styles.trendDown
-            }`}
-          >
-            {trend}
+          <div className={`${styles.trend} ${trendClass}`}>
+            {trendSymbolMap[trend]}
           </div>
         </div>
 
-        <div className={styles.value}>{value}</div>
-        <div className={styles.label}>{label}</div>
-        <div className={styles.meta}>{meta}</div>
+        <div className={styles.surface}>
+          <div className={styles.value}>{value}</div>
+          <div className={styles.meta}>{sub}</div>
+        </div>
       </div>
     </article>
   );

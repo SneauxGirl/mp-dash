@@ -1,4 +1,7 @@
 import styles from "./DashboardSidebar.module.scss";
+import { controlIconMap } from "@/data/iconMap";
+
+const ChevronLeftIcon = controlIconMap.left;
 
 export default function DashboardSidebar() {
   return (
@@ -13,8 +16,8 @@ export default function DashboardSidebar() {
             <div className="eyebrow">Mr. Pops</div>
             <div className={styles.brandTitle}>Dashboard</div>
           </div>
-          <div className="controlSquare controlSquare--left" aria-hidden="true" >
-  ‹
+<div className="controlSquare" aria-hidden="true">
+  <ChevronLeftIcon />
 </div>
         </div>
 

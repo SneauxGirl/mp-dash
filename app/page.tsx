@@ -5,6 +5,21 @@ import MonthlyTargets from "@/components/dashboard/MonthlyTargets";
 import Notes from "@/components/dashboard/Notes";
 import TopProducts from "@/components/dashboard/TopProducts";
 import TopStrip from "@/components/dashboard/TopStrip";
+import KpiCard from "@/components/dashboard/KpiCard";
+
+import { dashboardData } from "@/data/dashboardData";
+import { kpiIconMap } from "@/data/iconMap";
+
+const KPI_LABELS: Record<string, string> = {
+  "projected-ytd": "Projected YTD",
+  "top-venue": "Top Venue",
+  "revenue-per-event": "Revenue / Event",
+  "next-7-days": "Next 7 Days",
+  "underperformer": "Slowest Product",
+  "margin": "Net Margin",
+  "labor-rate": "Labor %",
+  "cost-overrun": "Cost Pressure",
+};
 
 export default function HomePage() {
   return (
@@ -13,67 +28,44 @@ export default function HomePage() {
 
       <div className="dashboardShell">
         <DashboardSidebar />
+
         <main className="main">
-<TopStrip />
-<div className="mainScroll">
-          <section className="kpiGrid" aria-label="At a glance metrics">
-            <article className="panel">
-              <div className="panelTopline" />
-              <div className="panelContent">KPI 1</div>
-            </article>
+          <TopStrip />
 
-            <article className="panel">
-              <div className="panelTopline" />
-              <div className="panelContent">KPI 2</div>
-            </article>
+          <div className="mainScroll">
+            <section className="kpiGrid" aria-label="At a glance metrics">
+  {dashboardData.kpis.map((kpi) => {
+    const Icon = kpiIconMap[kpi.id as keyof typeof kpiIconMap];
 
-            <article className="panel">
-              <div className="panelTopline" />
-              <div className="panelContent">KPI 3</div>
-            </article>
-
-            <article className="panel">
-              <div className="panelTopline" />
-              <div className="panelContent">KPI 4</div>
-            </article>
-
-            <article className="panel">
-              <div className="panelTopline" />
-              <div className="panelContent">KPI 5</div>
-            </article>
-
-            <article className="panel">
-              <div className="panelTopline" />
-              <div className="panelContent">KPI 6</div>
-            </article>
-
-            <article className="panel">
-              <div className="panelTopline" />
-              <div className="panelContent">KPI 7</div>
-            </article>
-
-            <article className="panel">
-              <div className="panelTopline" />
-              <div className="panelContent">KPI 8</div>
-            </article>
-          </section>
-
-<section className="contentRow" aria-label="Dashboard content">
-  <div className="colExpense">
-    <ExpenseGroups />
-  </div>
-
-  <div className="colMain">
-  <RevenueByMonth />
-  <TopProducts />
-</div>
-
-  <div className="colSide">
-    <Notes />
-    <MonthlyTargets />
-  </div>
+    return (
+      <KpiCard
+        key={kpi.id}
+        icon={<Icon />}
+        trend={kpi.trend}
+        value={kpi.value}
+        eyebrow={KPI_LABELS[kpi.id]}
+        sub={kpi.sub}
+      />
+    );
+  })}
 </section>
-</div>
+
+            <section className="contentRow" aria-label="Dashboard content">
+              <div className="colExpense">
+                <ExpenseGroups />
+              </div>
+
+              <div className="colMain">
+                <RevenueByMonth />
+                <TopProducts />
+              </div>
+
+              <div className="colSide">
+                <Notes />
+                <MonthlyTargets />
+              </div>
+            </section>
+          </div>
         </main>
       </div>
     </>
