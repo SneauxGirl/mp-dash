@@ -55,12 +55,19 @@ padding: var(--space-5);
 .kpiGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: var(--content-gap);
 }
 
 .contentRow {
   display: flex;
   gap: var(--content-gap);
+  align-items: flex-start;
+}
+
+.colExpense,
+.colMain,
+.colSide {
+  min-width: 0;
 }
 
 .colExpense {
@@ -90,15 +97,107 @@ padding: var(--space-5);
 .colSide {
   min-width: 0;
 }
+@media (max-width: 1400px) {
 
-
-/* Responsive */
-@media (max-width: 1280px) {
-  .kpiGrid {
-    grid-template-columns: repeat(2, 1fr);
+    .notesPanel {
+    display: none;
   }
 
   .contentRow {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .colExpense {
+    flex: 0 0 305px;
+    max-width: 305px;
+  }
+
+  .colMain {
+    flex: 1 1 528px;
+    min-width: 528px;
+  }
+
+  .colSide {
+    flex: 0 0 305px;
+    max-width: 305px;
+  }
+}
+
+@media (max-width: 700px) {
+  .contentRow {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .colExpense,
+  .colMain,
+  .colSide {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .colMain {
+    min-width: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .kpiGrid {
+    display: flex;
+    gap: var(--content-gap);
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: var(--space-1);
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .kpiGrid > * {
+    flex: 0 0 235px;
+    min-width: 235px;
+    scroll-snap-align: start;
+  }
+  .kpiGrid {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(141, 252, 114, 0.18) transparent;
+  }
+
+  .kpiGrid::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .kpiGrid::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .kpiGrid::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      90deg,
+      rgba(141, 252, 114, 0.18),
+      rgba(255, 215, 92, 0.18)
+    );
+    border-radius: 999px;
+  }
+
+  .kpiGrid::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      90deg,
+      rgba(141, 252, 114, 0.28),
+      rgba(255, 215, 92, 0.28)
+    );
+  }
+}
+@media (max-width: 1100px) {
+    .contentRow {
     flex-direction: column;
   }
 }
+

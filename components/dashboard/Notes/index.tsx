@@ -1,8 +1,16 @@
+"use client";
+
 import styles from "./Notes.module.scss";
 
-export default function Notes() {
+type NotesProps = {
+  compact?: boolean;
+};
+
+export default function Notes({ compact = false }: NotesProps) {
   return (
-    <section className={`panel ${styles.notes}`}>
+    <section
+      className={`panel ${styles.notes} ${compact ? styles.compact : ""}`}
+    >
       <div className="panelTopline" />
 
       <div className={`panelContent ${styles.inner}`}>
@@ -18,7 +26,6 @@ export default function Notes() {
           </div>
         </header>
 
-        {/* Composer */}
         <div className={styles.composer}>
           <label className={styles.label}>Quick capture</label>
 
@@ -37,14 +44,11 @@ export default function Notes() {
                 📎
               </button>
 
-              <button className={styles.primaryBtn}>
-                Submit
-              </button>
+              <button className={styles.primaryBtn}>Submit</button>
             </div>
           </div>
         </div>
 
-        {/* Output */}
         {/* <section className={styles.output}>
           <div className={styles.outputHead}>
             <div className={styles.outputTitle}>Suggested Actions</div>

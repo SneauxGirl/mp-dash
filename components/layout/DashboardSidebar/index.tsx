@@ -1,24 +1,61 @@
+"use client";
+
+import { useState } from "react";
 import styles from "./DashboardSidebar.module.scss";
 import { controlIconMap } from "@/data/iconMap";
+import Notes from "@/components/dashboard/Notes";
 
-const ChevronLeftIcon = controlIconMap.left;
+type DashboardSidebarProps = {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-export default function DashboardSidebar() {
+export default function DashboardSidebar({
+  isSidebarOpen,
+  setIsSidebarOpen,
+}: DashboardSidebarProps) {
+  const [collapsed, setCollapsed] = useState(false);
+
+  const ChevronLeftIcon = controlIconMap.left;
+  const ChevronRightIcon = controlIconMap.right;
+  const ToggleIcon = collapsed ? ChevronRightIcon : ChevronLeftIcon;
+
   return (
-    <aside className={`${styles.sidebar} panel`}>
+<aside
+  className={`
+    ${styles.sidebar}
+    ${collapsed ? styles.sidebarCollapsed : ""}
+    ${isSidebarOpen ? styles.isOpen : ""}
+    panel
+  `}
+>
       <div className="panelTopline" />
+
       <div className={`${styles.sidebarInner} panelContent`}>
         <div className={styles.brand}>
           <div className={styles.brandMark} aria-hidden="true">
             <img src="/MPMono.png" alt="MP logo" className={styles.logo} />
           </div>
+
           <div className={styles.brandCopy}>
             <div className="eyebrow">Mr. Pops</div>
             <div className={styles.brandTitle}>Dashboard</div>
           </div>
-<div className="controlSquare" aria-hidden="true">
-  <ChevronLeftIcon />
-</div>
+
+<button
+  type="button"
+  className="controlSquare"
+  onClick={() => {
+    if (window.innerWidth <= 980) {
+      setIsSidebarOpen(false);
+    } else {
+      setCollapsed((prev) => !prev);
+    }
+  }}
+  aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+>
+  <ToggleIcon />
+</button>
         </div>
 
         <nav className={styles.nav} aria-label="Sidebar navigation">
@@ -31,7 +68,7 @@ export default function DashboardSidebar() {
                 <path d="M22 20H2" />
               </svg>
             </span>
-            <span>Dashboard</span>
+            <span className={styles.navLabel}>Dashboard</span>
           </a>
 
           <a className={styles.navItem} href="#">
@@ -40,7 +77,7 @@ export default function DashboardSidebar() {
                 <path d="M3 12h4l2-6 4 12 2-6h6" />
               </svg>
             </span>
-            <span>Monitoring</span>
+            <span className={styles.navLabel}>Monitoring</span>
           </a>
 
           <a className={styles.navItem} href="#">
@@ -52,7 +89,7 @@ export default function DashboardSidebar() {
                 <path d="M10 17h6" />
               </svg>
             </span>
-            <span>Reports</span>
+            <span className={styles.navLabel}>Reports</span>
           </a>
 
           <a className={styles.navItem} href="#">
@@ -62,28 +99,32 @@ export default function DashboardSidebar() {
                 <path d="M5 21a7 7 0 0 1 14 0" />
               </svg>
             </span>
-            <span>Profile</span>
+            <span className={styles.navLabel}>Profile</span>
           </a>
         </nav>
 
+<div className={styles.sidebarNotes}>
+  <Notes compact />
+</div>
         <div className={styles.spacer} />
 
         <section className={styles.status} aria-label="System status">
           <a
-  href="https://github.com/sneauxgirl"
-  target="_blank"
-  rel="noopener noreferrer"
-  className={styles.statusBadge}
-  aria-label="View GitHub profile"
->
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path
-      fill="currentColor"
-      d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.48 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.8c.85.004 1.7.12 2.5.35 1.9-1.32 2.74-1.05 2.74-1.05.56 1.4.21 2.44.1 2.7.64.72 1.03 1.64 1.03 2.76 0 3.94-2.34 4.8-4.57 5.06.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.59.69.48A10.03 10.03 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"
-    />
-  </svg>
-</a>
-          <div>
+            href="https://github.com/sneauxgirl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.statusBadge}
+            aria-label="View GitHub profile"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.48 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.8c.85.004 1.7.12 2.5.35 1.9-1.32 2.74-1.05 2.74-1.05.56 1.4.21 2.44.1 2.7.64.72 1.03 1.64 1.03 2.76 0 3.94-2.34 4.8-4.57 5.06.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.59.69.48A10.03 10.03 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"
+              />
+            </svg>
+          </a>
+
+          <div className={styles.statusCopy}>
             <div className={styles.statusLabel}>System Status</div>
             <div className={styles.statusState}>Online</div>
           </div>

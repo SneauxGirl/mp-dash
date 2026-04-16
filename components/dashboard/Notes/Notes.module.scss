@@ -1,17 +1,17 @@
 .inner {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: var(--space-4);
 }
 
 .title {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-1);
   font-size: var(--font-size-xl);
   font-weight: 700;
   line-height: var(--line-tight);
@@ -59,8 +59,8 @@
 }
 
 .label {
-  display: block;
-  margin-bottom: var(--space-2);
+  display: block;  
+  margin-bottom: 28px;
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--text-soft);
@@ -75,12 +75,11 @@
     rgba(255, 255, 255, 0.03),
     rgba(255, 255, 255, 0.012)
   );
-  overflow: hidden;
 }
 
 .textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 24vh;
   padding: var(--space-3);
   background: transparent;
   border: none;
@@ -217,4 +216,66 @@
   font-size: var(--font-size-xs);
   line-height: var(--line-normal);
   color: var(--text-soft);
+}
+
+.compact {
+  .inner {
+    gap: var(--space-3);
+    display: flex;
+  flex-direction: column;
+  flex: 1;
+  }
+
+  .composer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+  .header {
+    margin-bottom: var(--space-2);
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .title {
+    font-size: var(--font-size-md);
+  }
+
+  .status {
+    min-height: 32px;
+    padding: 0 var(--space-2);
+    gap: var(--space-2);
+    font-size: var(--font-size-2xs);
+  }
+
+  .label {
+    margin-bottom: var(--space-1);
+    font-size: var(--font-size-2xs);
+  }
+
+  .textarea {
+     flex: 1;
+  min-height: 120px;
+    padding: var(--space-2);
+    font-size: var(--font-size-xs);
+  }
+
+  .actions {
+    gap: var(--space-2);
+    padding: var(--space-2);
+    margin-top: auto;
+  }
+
+  .iconBtn {
+    width: 30px;
+    height: 30px;
+    font-size: var(--font-size-xs);
+  }
+
+  .primaryBtn {
+    min-height: 30px;
+    padding: 0 var(--space-3);
+    font-size: var(--font-size-xs);
+  }
 }
