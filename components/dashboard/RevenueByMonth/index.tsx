@@ -27,7 +27,8 @@ export default function RevenueByMonth() {
 
   const axisTicks = [axisMax, axisMax * 0.75, axisMax * 0.5, axisMax * 0.25, 0];
 
-  const chartHeight = 150;
+  const chartHeight = 180;
+  const compactMonthLabel = (month: string) => month.charAt(0);
 
   return (
     <section className={`panel ${styles.revenueByMonth}`}>
@@ -41,13 +42,12 @@ export default function RevenueByMonth() {
           </div>
 
           <div className={styles.controls}>
-                        <button type="button" className={styles.pill}>
+            <button type="button" className={styles.pill}>
               Group by Location
             </button>
             <button type="button" className={styles.pill}>
               Jun 2025
             </button>
-
           </div>
         </header>
 
@@ -90,30 +90,33 @@ export default function RevenueByMonth() {
                     </div>
                   </div>
 
-                  <span className={styles.label}>{item.month}</span>
+                  <span className={styles.label}>
+  {item.month.length > 1 ? compactMonthLabel(item.month) : item.month}
+</span>
                 </div>
               );
             })}
           </div>
-        </div>
 
-        <div className={styles.legend}>
-          <span className={styles.legendItem}>
-            <span className={`${styles.legendSwatch} ${styles.legendSwatchEvents}`} />
-            Events
-          </span>
-          <span className={styles.legendItem}>
-            <span className={`${styles.legendSwatch} ${styles.legendSwatchRetail}`} />
-            Retail
-          </span>
-          <span className={styles.legendItem}>
-            <span className={`${styles.legendSwatch} ${styles.legendSwatchStands}`} />
-            Stands
-          </span>
-          <span className={styles.legendItem}>
-            <span className={`${styles.legendSwatch} ${styles.legendSwatchOnline}`} />
-            Online
-          </span>
+          {/* ✅ LEGEND — INSIDE chartWrap */}
+          <div className={styles.legend}>
+            <span className={styles.legendItem}>
+              <span className={`${styles.legendSwatch} ${styles.legendSwatchEvents}`} />
+              Events
+            </span>
+            <span className={styles.legendItem}>
+              <span className={`${styles.legendSwatch} ${styles.legendSwatchRetail}`} />
+              Retail
+            </span>
+            <span className={styles.legendItem}>
+              <span className={`${styles.legendSwatch} ${styles.legendSwatchStands}`} />
+              Stands
+            </span>
+            <span className={styles.legendItem}>
+              <span className={`${styles.legendSwatch} ${styles.legendSwatchOnline}`} />
+              Online
+            </span>
+          </div>
         </div>
       </div>
     </section>

@@ -2,12 +2,13 @@
 
 .revenueByMonth {
   min-height: auto;
+  min-width: 0;
 }
 
 .inner {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
 
 .header {
@@ -15,6 +16,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-3);
+  margin-bottom: var(--space-4); 
 }
 
 .title {
@@ -23,6 +25,8 @@
   font-weight: 700;
   line-height: var(--line-tight);
   letter-spacing: var(--tracking-tight);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
 }
 
 .controls {
@@ -47,14 +51,30 @@
   color: var(--text-soft);
 }
 
+/* =========================
+   CHART CONTAINER
+   ========================= */
+
 .chartWrap {
   @include glassSurface;
 
-  padding: var(--space-4) var(--space-4) var(--space-2) 44px;
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  gap: var(--space-3);
+
+  width: 100%;
+  min-width: 0;
+
+  padding: var(--space-4) var(--space-4) var(--space-3) 44px;
+
   min-height: 220px;
+  max-height: 420px;
+
+  position: relative;
   overflow: hidden;
 }
-
+/* grid overlay */
 .chartGrid {
   position: absolute;
   inset: 0;
@@ -86,21 +106,32 @@
   position: absolute;
   top: 24px;
   left: 12px;
-  bottom: 34px;
+  bottom: 50px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   color: var(--text-soft);
   font-size: var(--font-size-2xs);
 }
 
 .plot {
-  height: 100%;
+  flex: 1;
+  min-height: 180px;
+  min-width: 0;
+
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 6px;
   align-items: end;
+
+  margin-left: 0;
+  margin-bottom: 0;
 }
+/* =========================
+   BARS
+   ========================= */
 
 .month {
   display: flex;
@@ -113,22 +144,28 @@
 
 .stack {
   width: 100%;
-  max-width: 24px;
-  min-height: 150px;
+  max-width: clamp(14px, 2vw, 24px);
+  height: 100%;
+
   display: flex;
   align-items: flex-end;
   justify-content: center;
+
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.04),
     0 0 12px rgba(255, 215, 92, 0.04);
+
   background: rgba(255, 255, 255, 0.015);
 }
 
 .stackFill {
   width: 100%;
+  height: 100%; // ✅ REQUIRED
+
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-start;
+
   border-radius: 10px 10px 0 0;
   overflow: hidden;
 }
@@ -147,6 +184,8 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
   pointer-events: none;
 }
+
+/* colors */
 
 .segEvents {
   background: linear-gradient(180deg, #ffe98c, #ffd75c 34%, #ffbf3c 100%);
@@ -175,13 +214,20 @@
   line-height: 1;
 }
 
+/* =========================
+   LEGEND
+   ========================= */
+
 .legend {
   display: flex;
   gap: var(--space-4);
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding-top: var(--space-2);
+
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-1);
+
   color: var(--text-soft);
   font-size: var(--font-size-2xs);
 }
@@ -215,6 +261,70 @@
   background: linear-gradient(180deg, #7cb946, #5d8d2a 50%, #3f6318 100%);
 }
 
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+   @media (max-width: 1400px) {
+    .revenueByMonth {
+  min-height: auto;
+  min-width: 0;
+  max-width: 350px;
+  width: 100%;
+}
+  .header {
+    gap: var(--space-2);
+  }
+
+  .title {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  .controls {
+    gap: var(--space-1);
+  }
+
+  .pill {
+    min-height: 28px;
+    padding: 0 var(--space-2);
+    font-size: var(--font-size-2xs);
+  }
+
+  .chartWrap {
+    padding: var(--space-3) var(--space-3) var(--space-2) 34px;
+    min-height: 200px;
+  }
+
+  .yAxis {
+    left: 8px;
+    top: 20px;
+    bottom: 44px;
+    font-size: var(--font-size-2xs);
+  }
+
+
+  .plot {
+    margin-left: 0;
+    gap: 4px;
+    min-height: 160px;
+  }
+
+.stack {
+  max-width: clamp(12px, 1.8vw, 18px);
+}
+
+  .label {
+    font-size: var(--font-size-2xs);
+    letter-spacing: 0;
+  }
+
+  .legend {
+    gap: var(--space-3);
+    margin-top: var(--space-1);
+  }
+}
+
 @media (max-width: 980px) {
   .header {
     flex-direction: column;
@@ -232,7 +342,6 @@
 
   .stack {
     max-width: 20px;
-    min-height: 136px;
   }
 }
 
@@ -246,7 +355,6 @@
     top: 20px;
     left: 8px;
     bottom: 28px;
-    font-size: var(--font-size-2xs);
   }
 
   .plot {
@@ -255,11 +363,6 @@
 
   .stack {
     max-width: 16px;
-    min-height: 112px;
-  }
-
-  .label {
-    font-size: var(--font-size-2xs);
   }
 
   .legend {

@@ -93,15 +93,16 @@
 
 /* > 1400 : 3-column shell */
 .colExpense {
-  flex: 0 0 305px;
+  flex: 0 0 clamp(320px, 26vw, 380px);
 }
 
 .colMain {
-  flex: 1 1 0;
+  flex: 1.4 1 0;
 }
 
 .colSide {
-  flex: 0 0 clamp(300px, 24vw, 360px);
+  flex: 1 1 0;
+  max-width: 360px;
 }
 
 /* =========================
@@ -116,7 +117,7 @@
 
   .contentRow {
     flex-wrap: wrap;
-    align-items: stretch;
+    align-items: flex-start;
   }
 
   /* dissolve wrappers so actual cards become the flex items */
@@ -126,46 +127,47 @@
     display: contents;
   }
 
-  .colExpense > *,
-  .colMain > *,
-  .colSide > * {
-    flex: 0 1 calc(50% - (var(--content-gap) / 2));
-    width: calc(50% - (var(--content-gap) / 2));
-    max-width: calc(50% - (var(--content-gap) / 2));
-    min-width: 0;
+.colMain > *,
+.colExpense > * {
+  flex: 0 1 calc(66.666% - (var(--content-gap) / 2));
+  width: calc(66.666% - (var(--content-gap) / 2));
+  max-width: calc(66.666% - (var(--content-gap) / 2));
+  min-width: 0;
+}
+
+.colSide > * {
+  flex: 0 1 calc(33.333% - (var(--content-gap) / 2));
+  width: calc(33.333% - (var(--content-gap) / 2));
+  max-width: calc(33.333% - (var(--content-gap) / 2));
+  min-width: 0;
+}
+
+  .colMain > :first-child {
+    order: 1; // Top Products
+  }
+
+  .colSide > :last-child {
+    order: 2; // Monthly Targets
+  }
+
+  .colExpense > :first-child {
+    order: 3; // Expense Groups
+  }
+
+  .colMain > :last-child {
+    order: 4; // Revenue
+      flex: 1 1 250px;
+  min-width: 250px;
+  max-width: 497px;
+  width: 100%;
   }
 }
 
-/* keep 2-up through small tablet */
-@media (max-width: 900px) {
-  .colExpense > *,
-  .colMain > *,
-  .colSide > * {
-    flex: 0 1 calc(50% - (var(--content-gap) / 2));
-    width: calc(50% - (var(--content-gap) / 2));
-    max-width: calc(50% - (var(--content-gap) / 2));
-  }
-}
-
-/* do not go single-column until phone size */
-@media (max-width: 620px) {
-  .colExpense > *,
-  .colMain > *,
-  .colSide > * {
-    flex: 0 1 calc(50% - (var(--content-gap) / 2));
-    width: calc(50% - (var(--content-gap) / 2));
-    max-width: calc(50% - (var(--content-gap) / 2));
-  }
-}
-
-/* =========================
-   PHONE
-   ========================= */
-
-@media (max-width: 500px) {
+@media (max-width: 1100px) {
   .contentRow {
     flex-direction: column;
     flex-wrap: nowrap;
+    align-items: stretch;
   }
 
   .colExpense,
@@ -179,9 +181,33 @@
   .colSide > * {
     flex: 1 1 auto;
     width: 100%;
-    max-width: none;
+    max-width: 100%;
     min-width: 0;
   }
+
+    .colMain > :first-child {
+    order: 1; // Top Products
+  }
+
+  .colExpense > :first-child {
+    order: 2; // Expense Groups
+  }
+
+  .colMain > :last-child {
+    order: 4; // Revenue
+      flex: 1 1 250px;
+  min-width: 250px;
+  max-width: 497px;
+  width: 100%;
+  }
+    .colSide > :last-child {
+    order: 3; // Monthly Targets
+          flex: 1 1 250px;
+  min-width: 250px;
+  max-width: 497px;
+  width: 100%;
+  }
+
 }
 
 /* =========================

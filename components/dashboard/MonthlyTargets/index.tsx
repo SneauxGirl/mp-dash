@@ -255,7 +255,7 @@ const chartPaddingBottom = 14;
                   key={`day-${point.day}`}
                   cx={point.x}
                   cy={point.y}
-                  r="4.5"
+                  r="4"
                 />
               ))}
             </g>
