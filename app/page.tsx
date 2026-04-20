@@ -20,10 +20,17 @@ const KPI_LABELS: Record<string, string> = {
   "revenue-per-event": "Revenue / Event",
   "next-7-days": "Next 7 Days",
   "underperformer": "Slowest Product",
-  margin: "Net Margin",
+  "margin": "Net Margin",
   "labor-rate": "Labor %",
   "cost-overrun": "Cost Pressure",
 };
+
+const HIDDEN_KPI_IDS = new Set([
+  "top-venue",
+  "next-7-days",
+  "labor-rate",
+  "margin",
+]);
 
 export default function HomePage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -61,7 +68,9 @@ export default function HomePage() {
 
           <div className="mainScroll">
             <section className="kpiGrid" aria-label="At a glance metrics">
-              {dashboardData.kpis.map((kpi) => {
+              {dashboardData.kpis
+                .filter((kpi) => !HIDDEN_KPI_IDS.has(kpi.id))
+                .map((kpi) => {
                 const Icon = kpiIconMap[kpi.id as keyof typeof kpiIconMap];
 
                 return (

@@ -97,6 +97,7 @@ export default function ExpenseGroups() {
 
         <div className={styles.layout}>
           <section className={styles.ringsPanel} aria-label="Expense group rings">
+            <div className={styles.ringsPanelInner} aria-hidden="true">
             <div className={styles.radarGrid} />
 
             <div className={styles.chartShell}>
@@ -216,6 +217,7 @@ export default function ExpenseGroups() {
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </section>
 
