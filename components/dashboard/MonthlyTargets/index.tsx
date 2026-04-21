@@ -133,7 +133,7 @@ export default function MonthlyTargets() {
   ];
 
   const chartWidth = 760;
-  const chartHeight = 180;
+  const chartHeight = 130;
 
   // extra left inset accounts for the visual glass bar + breathing room
  const chartPaddingLeft = 28;

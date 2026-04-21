@@ -27,7 +27,7 @@ export default function RevenueByMonth() {
 
   const axisTicks = [axisMax, axisMax * 0.75, axisMax * 0.5, axisMax * 0.25, 0];
 
-  const chartHeight = 180;
+  const chartHeight = 130;
   const compactMonthLabel = (month: string) => month.charAt(0);
 
   return (

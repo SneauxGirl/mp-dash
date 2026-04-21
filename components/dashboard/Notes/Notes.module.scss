@@ -219,6 +219,12 @@
   color: var(--text-soft);
 }
 
+@media (max-width: 1400px) and (min-width: 901px) {
+  .textarea {
+    min-height: clamp(100px, 14vh, 140px);
+  }
+}
+
 .compact {
   .inner {
     gap: var(--space-3);
