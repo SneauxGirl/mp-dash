@@ -59,27 +59,40 @@
 }
 
 /* =========================
-   CONTENT LAYOUT
+   CONTENT LAYOUT (cards stay dumb; wrappers position)
+   >1400: three cols flex | 1101–1400: two cols; grid aligns left 50/50 vs right thirds |
+   ≤1100 … (see queries below)
    ========================= */
 
 .contentRow {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: var(--content-gap);
   align-items: stretch;
+  min-width: 0;
 }
 
-.colExpense,
-.colMain,
-.colSide {
+.contentRowExpense,
+.contentRowMain,
+.contentRowSide {
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: var(--content-gap);
 }
 
-.colExpense > *,
-.colMain > *,
-.colSide > * {
+.contentRowRail {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-gap);
+  flex: 1 1 auto;
+}
+
+.contentRowExpense > *,
+.contentRowMain > *,
+.contentRowRail > * {
   min-width: 0;
 }
 
@@ -91,123 +104,181 @@
   flex: 1;
 }
 
-/* > 1400 : 3-column shell */
-.colExpense {
+/* min-width 1401px : three columns */
+.contentRowExpense {
   flex: 0 0 clamp(320px, 26vw, 380px);
 }
 
-.colMain {
+.contentRowMain {
   flex: 1.4 1 0;
 }
 
-.colSide {
+.contentRowSide {
   flex: 1 1 0;
   max-width: 360px;
 }
 
-/* =========================
-   1400 ↓ : 2-up flex wrap
-   Notes moves to sidebar
-   ========================= */
+/* ---- max-width 1400px & min-width 1101px: two columns — left 2/3 split 50/50 vertically;
+   right 1/3 split in thirds (Notes | Revenue | Targets). Grid only in this band. ---- */
+@media (max-width: 1400px) and (min-width: 1101px) {
+  /*
+   * Content-sized rows — 1fr rows were filling mainScroll’s fixed height and
+   * cropping panels; auto rows let the grid grow in height so mainScroll scrolls.
+   */
+  .contentRow {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-rows: repeat(6, auto);
+    gap: var(--content-gap);
+    align-items: stretch;
+    align-content: start;
+    flex-wrap: nowrap;
+  }
 
-@media (max-width: 1400px) {
+  .contentRowExpense,
+  .contentRowMain,
+  .contentRowSide,
+  .contentRowRail {
+    display: contents;
+  }
+
+  /* Left: Top = rows 1–3, Exp = rows 4–6 (half the stack each) */
+  .contentRowMain > :first-child {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    width: auto;
+    max-width: none;
+  }
+
+  .contentRowExpense > :first-child {
+    grid-column: 1;
+    grid-row: 4 / 7;
+    width: auto;
+    max-width: none;
+  }
+
+  /* Right: each band = 2 rows of 6 (one third of the stack) */
+  .notesPanel {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    display: flex;
+    width: auto;
+    max-width: none;
+  }
+
+  .contentRowMain > :last-child {
+    grid-column: 2;
+    grid-row: 3 / 5;
+    width: auto;
+    max-width: none;
+  }
+
+  .contentRowRail > :last-child {
+    grid-column: 2;
+    grid-row: 5 / 7;
+    width: auto;
+    max-width: none;
+    margin-left: 0;
+  }
+}
+
+/* ---- max-width 1100px & min-width 701px: Top full, Exp full, Rev | Targets ---- */
+@media (max-width: 1100px) and (min-width: 701px) {
   .notesPanel {
     display: none;
   }
 
   .contentRow {
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-content: flex-start;
   }
 
-  /* dissolve wrappers so actual cards become the flex items */
-  .colExpense,
-  .colMain,
-  .colSide {
+  .contentRowExpense,
+  .contentRowMain,
+  .contentRowSide,
+  .contentRowRail {
     display: contents;
   }
 
-.colMain > *,
-.colExpense > * {
-  flex: 0 1 calc(66.666% - (var(--content-gap) / 2));
-  width: calc(66.666% - (var(--content-gap) / 2));
-  max-width: calc(66.666% - (var(--content-gap) / 2));
-  min-width: 0;
-}
-
-.colSide > * {
-  flex: 0 1 calc(33.333% - (var(--content-gap) / 2));
-  width: calc(33.333% - (var(--content-gap) / 2));
-  max-width: calc(33.333% - (var(--content-gap) / 2));
-  min-width: 0;
-}
-
-  .colMain > :first-child {
-    order: 1; // Top Products
+  .contentRowMain > :first-child {
+    order: 1;
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
   }
 
-  .colSide > :last-child {
-    order: 2; // Monthly Targets
+  .contentRowExpense > :first-child {
+    order: 2;
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
   }
 
-  .colExpense > :first-child {
-    order: 3; // Expense Groups
+  .contentRowMain > :last-child {
+    order: 3;
+    flex: 0 0 calc(50% - var(--content-gap) / 2);
+    max-width: calc(50% - var(--content-gap) / 2);
+    width: calc(50% - var(--content-gap) / 2);
+    box-sizing: border-box;
   }
 
-  .colMain > :last-child {
-    order: 4; // Revenue
-      flex: 1 1 250px;
-  min-width: 250px;
-  max-width: 497px;
-  width: 100%;
+  .contentRowRail > :last-child {
+    order: 4;
+    margin-left: 0;
+    flex: 0 0 calc(50% - var(--content-gap) / 2);
+    max-width: calc(50% - var(--content-gap) / 2);
+    width: calc(50% - var(--content-gap) / 2);
+    box-sizing: border-box;
   }
 }
 
-@media (max-width: 1100px) {
+/* ---- max-width 700px: single column ---- */
+@media (max-width: 700px) {
+  .notesPanel {
+    display: none;
+  }
+
   .contentRow {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: stretch;
   }
 
-  .colExpense,
-  .colMain,
-  .colSide {
+  .contentRowExpense,
+  .contentRowMain,
+  .contentRowSide,
+  .contentRowRail {
     display: contents;
   }
 
-  .colExpense > *,
-  .colMain > *,
-  .colSide > * {
+  .contentRowMain > :first-child {
+    order: 1;
     flex: 1 1 auto;
-    width: 100%;
     max-width: 100%;
-    min-width: 0;
+    width: 100%;
   }
 
-    .colMain > :first-child {
-    order: 1; // Top Products
+  .contentRowExpense > :first-child {
+    order: 2;
+    flex: 1 1 auto;
+    max-width: 100%;
+    width: 100%;
   }
 
-  .colExpense > :first-child {
-    order: 2; // Expense Groups
+  .contentRowMain > :last-child {
+    order: 3;
+    flex: 1 1 auto;
+    max-width: 100%;
+    width: 100%;
   }
 
-  .colMain > :last-child {
-    order: 4; // Revenue
-      flex: 1 1 250px;
-  min-width: 250px;
-  max-width: 497px;
-  width: 100%;
+  .contentRowRail > :last-child {
+    order: 4;
+    flex: 1 1 auto;
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
   }
-    .colSide > :last-child {
-    order: 3; // Monthly Targets
-          flex: 1 1 250px;
-  min-width: 250px;
-  max-width: 497px;
-  width: 100%;
-  }
-
 }
 
 /* =========================

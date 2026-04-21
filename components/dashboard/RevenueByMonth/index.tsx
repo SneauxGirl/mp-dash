@@ -43,7 +43,7 @@ export default function RevenueByMonth() {
 
           <div className={styles.controls}>
             <button type="button" className={styles.pill}>
-              Group by Location
+              Location
             </button>
             <button type="button" className={styles.pill}>
               Jun 2025

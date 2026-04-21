@@ -87,22 +87,23 @@ export default function HomePage() {
             </section>
 
             <section className="contentRow" aria-label="Dashboard content">
-              <div className="colExpense">
+              <div className="contentRowExpense">
                 <ExpenseGroups />
               </div>
 
-              <div className="colMain">
+              <div className="contentRowMain">
                 <TopProducts />
                 <RevenueByMonth />
               </div>
 
-<div className="colSide">
-  <div className="notesPanel">
-    <Notes />
-  </div>
-
-  <MonthlyTargets />
-</div>
+              <div className="contentRowSide">
+                <div className="contentRowRail">
+                  <div className="notesPanel">
+                    <Notes />
+                  </div>
+                  <MonthlyTargets />
+                </div>
+              </div>
             </section>
           </div>
         </main>
