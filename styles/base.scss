@@ -23,12 +23,11 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(2, 3, 4, 0.2),
-      rgba(2, 3, 4, 0.9)
-    );
+  background: radial-gradient(
+    circle at center,
+    rgba(2, 3, 4, 0.2),
+    rgba(2, 3, 4, 0.9)
+  );
   pointer-events: none;
   z-index: -1;
 }
@@ -39,8 +38,8 @@ body::after {
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(transparent 96%, rgba(200,255,90,0.08) 97%),
-    linear-gradient(90deg, transparent 96%, rgba(255,215,92,0.08) 97%);
+    linear-gradient(transparent 96%, rgba(200, 255, 90, 0.08) 97%),
+    linear-gradient(90deg, transparent 96%, rgba(255, 215, 92, 0.08) 97%);
   background-size: 80px 80px;
   opacity: 0.25;
   pointer-events: none;
@@ -58,21 +57,13 @@ body::after {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    var(--green),
-    var(--gold)
-  );
+  background: linear-gradient(180deg, var(--green), var(--gold));
   border-radius: 999px;
   border: 2px solid var(--bg-deep);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    180deg,
-    var(--green-2),
-    var(--gold-2)
-  );
+  background: linear-gradient(180deg, var(--green-2), var(--gold-2));
 }
 
 /* Edge glow */
@@ -80,14 +71,12 @@ body::after {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(200,255,90,0.2),
-      transparent 20%,
-      transparent 80%,
-      rgba(255,215,92,0.2)
-    );
+  background: linear-gradient(
+    90deg,
+    rgba(200, 255, 90, 0.2),
+    transparent 20%,
+    transparent 80%,
+    rgba(255, 215, 92, 0.2)
+  );
   opacity: 0.4;
 }
-

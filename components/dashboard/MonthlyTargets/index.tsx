@@ -23,7 +23,7 @@ function xForDay(
   totalDays: number,
   width: number,
   paddingLeft: number,
-  paddingRight: number
+  paddingRight: number,
 ) {
   const innerWidth = width - paddingLeft - paddingRight;
   const normalized = (day - 1) / Math.max(totalDays - 1, 1);
@@ -36,7 +36,7 @@ function yForValue(
   maxValue: number,
   height: number,
   paddingTop: number,
-  paddingBottom: number
+  paddingBottom: number,
 ) {
   const innerHeight = height - paddingTop - paddingBottom;
   return paddingTop + innerHeight - (value / maxValue) * innerHeight;
@@ -51,7 +51,7 @@ function buildPathFromPoints(
   paddingLeft: number,
   paddingRight: number,
   paddingTop = 14,
-  paddingBottom = 18
+  paddingBottom = 18,
 ) {
   if (!points.length) return "";
 
@@ -63,7 +63,7 @@ function buildPathFromPoints(
         maxValue,
         height,
         paddingTop,
-        paddingBottom
+        paddingBottom,
       );
 
       return `${index === 0 ? "M" : "L"}${x},${y}`;
@@ -80,7 +80,7 @@ function buildSvgPoints(
   paddingLeft: number,
   paddingRight: number,
   paddingTop = 14,
-  paddingBottom = 18
+  paddingBottom = 18,
 ) {
   return points.map((point) => ({
     day: point.day,
@@ -90,10 +90,12 @@ function buildSvgPoints(
 }
 
 export default function MonthlyTargets() {
-  const { currentMonth, monthlyTargets, dailyCurrentMonthSales } = dashboardData;
+  const { currentMonth, monthlyTargets, dailyCurrentMonthSales } =
+    dashboardData;
 
   const target =
-    monthlyTargets.find((item) => item.month === currentMonth.month)?.target ?? 0;
+    monthlyTargets.find((item) => item.month === currentMonth.month)?.target ??
+    0;
 
   const dailyTotalsMap = new Map<number, number>();
 
@@ -101,7 +103,7 @@ export default function MonthlyTargets() {
     const day = getDayOfMonth(entry.date);
     const total = Object.values(entry.sales).reduce(
       (sum, value) => sum + value,
-      0
+      0,
     );
 
     dailyTotalsMap.set(day, (dailyTotalsMap.get(day) ?? 0) + total);
@@ -136,10 +138,10 @@ export default function MonthlyTargets() {
   const chartHeight = 130;
 
   // extra left inset accounts for the visual glass bar + breathing room
- const chartPaddingLeft = 28;
-const chartPaddingRight = 16;
-const chartPaddingTop = 10;
-const chartPaddingBottom = 14;
+  const chartPaddingLeft = 28;
+  const chartPaddingRight = 16;
+  const chartPaddingTop = 10;
+  const chartPaddingBottom = 14;
 
   const maxValue = Math.max(target, actual, 1) * 1.06;
 
@@ -152,7 +154,7 @@ const chartPaddingBottom = 14;
     chartPaddingLeft,
     chartPaddingRight,
     chartPaddingTop,
-    chartPaddingBottom
+    chartPaddingBottom,
   );
 
   const targetPath = buildPathFromPoints(
@@ -164,7 +166,7 @@ const chartPaddingBottom = 14;
     chartPaddingLeft,
     chartPaddingRight,
     chartPaddingTop,
-    chartPaddingBottom
+    chartPaddingBottom,
   );
 
   const actualSvgPoints = buildSvgPoints(
@@ -176,12 +178,15 @@ const chartPaddingBottom = 14;
     chartPaddingLeft,
     chartPaddingRight,
     chartPaddingTop,
-    chartPaddingBottom
-  ).filter((point) => point.day % 5 === 0 || point.day === completedDays.at(-1));
-
-  const days = Array.from({ length: totalDays }, (_, index) => index + 1).filter(
-    (day) => day % 5 === 0
+    chartPaddingBottom,
+  ).filter(
+    (point) => point.day % 5 === 0 || point.day === completedDays.at(-1),
   );
+
+  const days = Array.from(
+    { length: totalDays },
+    (_, index) => index + 1,
+  ).filter((day) => day % 5 === 0);
 
   return (
     <section className={`panel ${styles.monthlyTargets}`}>
@@ -207,14 +212,14 @@ const chartPaddingBottom = 14;
 
           <div className={styles.metric}>
             <div className={styles.metricLabel}>Actual</div>
-<div
-  className={`${styles.metricValue} ${
-    isAheadOfPace ? styles.positive : ""
-  }`}
->
-  {/* {isAheadOfPace ? "▲ " : "▼ "} */}
-  {formatCurrency(actual)}
-</div>
+            <div
+              className={`${styles.metricValue} ${
+                isAheadOfPace ? styles.positive : ""
+              }`}
+            >
+              {/* {isAheadOfPace ? "▲ " : "▼ "} */}
+              {formatCurrency(actual)}
+            </div>
           </div>
 
           <div className={styles.metric}>
@@ -269,7 +274,7 @@ const chartPaddingBottom = 14;
                   totalDays,
                   chartWidth,
                   chartPaddingLeft,
-                  chartPaddingRight
+                  chartPaddingRight,
                 ) /
                   chartWidth) *
                 100;

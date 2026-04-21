@@ -161,7 +161,7 @@ function stampSales(sales: ProductSales, saltStart: number): ProductSales {
 
 function stampLocations(
   locations: Record<LocationName, ProductSales>,
-  saltStart: number
+  saltStart: number,
 ): Record<LocationName, ProductSales> {
   const orderedLocations: LocationName[] = [
     "Golden 1 Center",
@@ -172,20 +172,19 @@ function stampLocations(
     "Roseville Fairgrounds",
   ];
 
-  return orderedLocations.reduce((acc, location, index) => {
-    acc[location] = stampSales(locations[location], saltStart + index * 7);
-    return acc;
-  }, {} as Record<LocationName, ProductSales>);
-}
-
-function sumProductSales(sales: ProductSales) {
-  return Object.values(sales).reduce((sum, value) => sum + value, 0);
+  return orderedLocations.reduce(
+    (acc, location, index) => {
+      acc[location] = stampSales(locations[location], saltStart + index * 7);
+      return acc;
+    },
+    {} as Record<LocationName, ProductSales>,
+  );
 }
 
 function makeExpenseSlice(
   amount: number,
   paidRatio: number,
-  upcomingRatio: number
+  upcomingRatio: number,
 ): ExpenseBudgetSlice {
   const paid = Math.round(amount * paidRatio);
   const upcoming = Math.round(amount * upcomingRatio);
@@ -198,7 +197,7 @@ function makeExpenseSlice(
 }
 
 function rollupJuneLocations(
-  entries: DailyEventFinance[]
+  entries: DailyEventFinance[],
 ): Record<LocationName, ProductSales> {
   const emptySales = (): ProductSales => ({
     Kettlecorn: 0,
@@ -226,7 +225,9 @@ function rollupJuneLocations(
   return rolled;
 }
 
-function buildDailyLocationSales(entries: DailyEventFinance[]): DailyLocationSales[] {
+function buildDailyLocationSales(
+  entries: DailyEventFinance[],
+): DailyLocationSales[] {
   return entries.map((entry) => ({
     date: entry.date,
     location: entry.location,
@@ -235,7 +236,7 @@ function buildDailyLocationSales(entries: DailyEventFinance[]): DailyLocationSal
 }
 
 function buildStadiumVendorBreakdown(
-  entries: DailyEventFinance[]
+  entries: DailyEventFinance[],
 ): StadiumVendorBreakdown[] {
   return entries
     .filter((entry) => entry.vendors)
@@ -246,7 +247,9 @@ function buildStadiumVendorBreakdown(
     }));
 }
 
-function buildExpenseGroups(monthlyExpenses: MonthlyExpenseRecord[]): ExpenseGroup[] {
+function buildExpenseGroups(
+  monthlyExpenses: MonthlyExpenseRecord[],
+): ExpenseGroup[] {
   const totals = monthlyExpenses.reduce(
     (acc, month) => {
       acc.product.amount += month.groups.product.amount;
@@ -272,7 +275,7 @@ function buildExpenseGroups(monthlyExpenses: MonthlyExpenseRecord[]): ExpenseGro
       staff: { amount: 0, paid: 0, upcoming: 0 },
       facilities: { amount: 0, paid: 0, upcoming: 0 },
       venues: { amount: 0, paid: 0, upcoming: 0 },
-    }
+    },
   );
 
   const totalTracked =
@@ -941,7 +944,7 @@ const juneExpenseAmounts = juneEventFinancials.reduce(
     acc.venues += entry.expenses.venues;
     return acc;
   },
-  { product: 0, staff: 0, facilities: 0, venues: 0 }
+  { product: 0, staff: 0, facilities: 0, venues: 0 },
 );
 
 const monthlyExpenseGroups: MonthlyExpenseRecord[] = [
@@ -1551,12 +1554,27 @@ export const dashboardData = {
   })) as EventRecord[],
 
   upcomingEvents: [
-    { id: 14, date: "2025-06-09", location: "Golden 1 Center", type: "Stadium" },
+    {
+      id: 14,
+      date: "2025-06-09",
+      location: "Golden 1 Center",
+      type: "Stadium",
+    },
     { id: 15, date: "2025-06-10", location: "Cal Expo", type: "Festival" },
     { id: 16, date: "2025-06-11", location: "Downtown Plaza", type: "Street" },
     { id: 17, date: "2025-06-12", location: "UCD Stadium", type: "Stadium" },
-    { id: 18, date: "2025-06-13", location: "Roseville Fairgrounds", type: "Festival" },
-    { id: 19, date: "2025-06-14", location: "Golden 1 Center", type: "Stadium" },
+    {
+      id: 18,
+      date: "2025-06-13",
+      location: "Roseville Fairgrounds",
+      type: "Festival",
+    },
+    {
+      id: 19,
+      date: "2025-06-14",
+      location: "Golden 1 Center",
+      type: "Stadium",
+    },
     { id: 20, date: "2025-06-15", location: "Sutter Park", type: "Stadium" },
     { id: 21, date: "2025-06-16", location: "Downtown Plaza", type: "Street" },
   ] as EventRecord[],
@@ -1584,13 +1602,43 @@ export const dashboardData = {
 
   kpis: [
     { id: "projected-ytd", value: "$2.70M", sub: "+$18K vs plan", trend: "up" },
-    { id: "top-venue", value: "Golden 1 Center", sub: "Still pacing strongest YTD", trend: "up" },
-    { id: "revenue-per-event", value: "$5,071", sub: "+3.8% vs last month", trend: "up" },
-    { id: "next-7-days", value: "8 Events", sub: "6 locations active", trend: "up" },
-    { id: "underperformer", value: "Cotton Candy", sub: "-4.7% vs last month", trend: "down" },
+    {
+      id: "top-venue",
+      value: "Golden 1 Center",
+      sub: "Still pacing strongest YTD",
+      trend: "up",
+    },
+    {
+      id: "revenue-per-event",
+      value: "$5,071",
+      sub: "+3.8% vs last month",
+      trend: "up",
+    },
+    {
+      id: "next-7-days",
+      value: "8 Events",
+      sub: "6 locations active",
+      trend: "up",
+    },
+    {
+      id: "underperformer",
+      value: "Cotton Candy",
+      sub: "-4.7% vs last month",
+      trend: "down",
+    },
     { id: "margin", value: "12.9%", sub: "-0.8% vs target", trend: "down" },
-    { id: "labor-rate", value: "28%", sub: "Within 28–30% target", trend: "neutral" },
-    { id: "cost-overrun", value: "Venues", sub: "+3.9% above forecast", trend: "down" },
+    {
+      id: "labor-rate",
+      value: "28%",
+      sub: "Within 28–30% target",
+      trend: "neutral",
+    },
+    {
+      id: "cost-overrun",
+      value: "Venues",
+      sub: "+3.9% above forecast",
+      trend: "down",
+    },
   ] as KPIRecord[],
 
   revenueByMonth,

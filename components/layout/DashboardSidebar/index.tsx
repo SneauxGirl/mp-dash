@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import styles from "./DashboardSidebar.module.scss";
 import { controlIconMap } from "@/data/iconMap";
 import Notes from "@/components/dashboard/Notes";
@@ -21,20 +22,26 @@ export default function DashboardSidebar({
   const ToggleIcon = collapsed ? ChevronRightIcon : ChevronLeftIcon;
 
   return (
-<aside
-  className={`
+    <aside
+      className={`
     ${styles.sidebar}
     ${collapsed ? styles.sidebarCollapsed : ""}
     ${isSidebarOpen ? styles.isOpen : ""}
     panel
   `}
->
+    >
       <div className="panelTopline" />
 
       <div className={`${styles.sidebarInner} panelContent`}>
         <div className={styles.brand}>
           <div className={styles.brandMark} aria-hidden="true">
-            <img src="/MPMono.png" alt="MP logo" className={styles.logo} />
+            <Image
+              src="/MPMono.png"
+              alt="MP logo"
+              width={48}
+              height={48}
+              className={styles.logo}
+            />
           </div>
 
           <div className={styles.brandCopy}>
@@ -42,20 +49,20 @@ export default function DashboardSidebar({
             <div className={styles.brandTitle}>Dashboard</div>
           </div>
 
-<button
-  type="button"
-  className="controlSquare"
-  onClick={() => {
-    if (window.innerWidth <= 980) {
-      setIsSidebarOpen(false);
-    } else {
-      setCollapsed((prev) => !prev);
-    }
-  }}
-  aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
->
-  <ToggleIcon />
-</button>
+          <button
+            type="button"
+            className="controlSquare"
+            onClick={() => {
+              if (window.innerWidth <= 980) {
+                setIsSidebarOpen(false);
+              } else {
+                setCollapsed((prev) => !prev);
+              }
+            }}
+            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
+            <ToggleIcon />
+          </button>
         </div>
 
         <nav className={styles.nav} aria-label="Sidebar navigation">
@@ -103,9 +110,9 @@ export default function DashboardSidebar({
           </a>
         </nav>
 
-<div className={styles.sidebarNotes}>
-  <Notes compact />
-</div>
+        <div className={styles.sidebarNotes}>
+          <Notes compact />
+        </div>
         <div className={styles.spacer} />
 
         <section className={styles.status} aria-label="System status">

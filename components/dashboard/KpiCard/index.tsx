@@ -28,8 +28,8 @@ export default function KpiCard({
     trend === "down"
       ? styles.trendDown
       : trend === "neutral"
-      ? styles.trendNeutral
-      : styles.trendUp;
+        ? styles.trendNeutral
+        : styles.trendUp;
 
   return (
     <article className={`panel ${styles.kpiCard}`}>

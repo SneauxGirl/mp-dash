@@ -19,8 +19,8 @@ const KPI_LABELS: Record<string, string> = {
   "top-venue": "Top Venue",
   "revenue-per-event": "Revenue / Event",
   "next-7-days": "Next 7 Days",
-  "underperformer": "Slowest Product",
-  "margin": "Net Margin",
+  underperformer: "Slowest Product",
+  margin: "Net Margin",
   "labor-rate": "Labor %",
   "cost-overrun": "Cost Pressure",
 };
@@ -63,7 +63,6 @@ export default function HomePage() {
         )}
 
         <main className="main">
-
           <TopStrip onOpenSidebar={() => setIsSidebarOpen(true)} />
 
           <div className="mainScroll">
@@ -71,19 +70,19 @@ export default function HomePage() {
               {dashboardData.kpis
                 .filter((kpi) => !HIDDEN_KPI_IDS.has(kpi.id))
                 .map((kpi) => {
-                const Icon = kpiIconMap[kpi.id as keyof typeof kpiIconMap];
+                  const Icon = kpiIconMap[kpi.id as keyof typeof kpiIconMap];
 
-                return (
-                  <KpiCard
-                    key={kpi.id}
-                    icon={<Icon />}
-                    trend={kpi.trend}
-                    value={kpi.value}
-                    eyebrow={KPI_LABELS[kpi.id]}
-                    sub={kpi.sub}
-                  />
-                );
-              })}
+                  return (
+                    <KpiCard
+                      key={kpi.id}
+                      icon={<Icon />}
+                      trend={kpi.trend}
+                      value={kpi.value}
+                      eyebrow={KPI_LABELS[kpi.id]}
+                      sub={kpi.sub}
+                    />
+                  );
+                })}
             </section>
 
             <section className="contentRow" aria-label="Dashboard content">

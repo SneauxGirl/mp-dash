@@ -91,8 +91,10 @@ export default function RevenueByMonth() {
                   </div>
 
                   <span className={styles.label}>
-  {item.month.length > 1 ? compactMonthLabel(item.month) : item.month}
-</span>
+                    {item.month.length > 1
+                      ? compactMonthLabel(item.month)
+                      : item.month}
+                  </span>
                 </div>
               );
             })}
@@ -101,19 +103,27 @@ export default function RevenueByMonth() {
           {/* ✅ LEGEND — INSIDE chartWrap */}
           <div className={styles.legend}>
             <span className={styles.legendItem}>
-              <span className={`${styles.legendSwatch} ${styles.legendSwatchEvents}`} />
+              <span
+                className={`${styles.legendSwatch} ${styles.legendSwatchEvents}`}
+              />
               Events
             </span>
             <span className={styles.legendItem}>
-              <span className={`${styles.legendSwatch} ${styles.legendSwatchRetail}`} />
+              <span
+                className={`${styles.legendSwatch} ${styles.legendSwatchRetail}`}
+              />
               Retail
             </span>
             <span className={styles.legendItem}>
-              <span className={`${styles.legendSwatch} ${styles.legendSwatchStands}`} />
+              <span
+                className={`${styles.legendSwatch} ${styles.legendSwatchStands}`}
+              />
               Stands
             </span>
             <span className={styles.legendItem}>
-              <span className={`${styles.legendSwatch} ${styles.legendSwatchOnline}`} />
+              <span
+                className={`${styles.legendSwatch} ${styles.legendSwatchOnline}`}
+              />
               Online
             </span>
           </div>

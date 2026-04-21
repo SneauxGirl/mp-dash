@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import styles from "./TopProducts.module.scss";
 import { dashboardData } from "@/data/dashboardData";
@@ -61,7 +61,7 @@ function buildYtdRows(rows: readonly TopProductRecord[]) {
 
   return Array.from(byProduct.entries()).map(([product, productRows]) => {
     const sortedRows = [...productRows].sort((a, b) =>
-      a.month.localeCompare(b.month)
+      a.month.localeCompare(b.month),
     );
 
     const latestRow = sortedRows[sortedRows.length - 1];
@@ -75,24 +75,28 @@ function buildYtdRows(rows: readonly TopProductRecord[]) {
 
       locationRevenueProxy.set(
         row.topLocation,
-        (locationRevenueProxy.get(row.topLocation) ?? 0) + weightedRevenue
+        (locationRevenueProxy.get(row.topLocation) ?? 0) + weightedRevenue,
       );
 
       locationTypeMap.set(row.topLocation, row.locationType);
 
       locationShareMap.set(
         row.topLocation,
-        Math.max(locationShareMap.get(row.topLocation) ?? 0, row.topLocationSharePct)
+        Math.max(
+          locationShareMap.get(row.topLocation) ?? 0,
+          row.topLocationSharePct,
+        ),
       );
     });
 
-    const [topLocation] =
-      [...locationRevenueProxy.entries()].sort((a, b) => b[1] - a[1])[0] ?? [
-        latestRow.topLocation,
-        0,
-      ];
+    const [topLocation] = [...locationRevenueProxy.entries()].sort(
+      (a, b) => b[1] - a[1],
+    )[0] ?? [latestRow.topLocation, 0];
 
-    const totalUnitsSold = sortedRows.reduce((sum, row) => sum + row.unitsSold, 0);
+    const totalUnitsSold = sortedRows.reduce(
+      (sum, row) => sum + row.unitsSold,
+      0,
+    );
     const totalRevenue = sortedRows.reduce((sum, row) => sum + row.revenue, 0);
 
     return {
@@ -113,6 +117,24 @@ function buildYtdRows(rows: readonly TopProductRecord[]) {
 
 export default function TopProducts() {
   const [viewMode, setViewMode] = useState<ViewMode>("mtd");
+  const [isMidViewport, setIsMidViewport] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(min-width: 900px) and (max-width: 1400px)",
+    );
+
+    const updateMatch = () => {
+      setIsMidViewport(mediaQuery.matches);
+    };
+
+    updateMatch();
+    mediaQuery.addEventListener("change", updateMatch);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateMatch);
+    };
+  }, []);
 
   const currentMonth = dashboardData.currentMonth.month;
   const allRows = dashboardData.topProductMonthly;
@@ -122,9 +144,12 @@ export default function TopProducts() {
       viewMode === "mtd"
         ? allRows.filter((row) => row.month === currentMonth)
         : buildYtdRows(allRows);
+    const rowLimit = isMidViewport ? 5 : 4;
 
-    return [...sourceRows].sort((a, b) => b.revenue - a.revenue).slice(0, 4);
-  }, [allRows, currentMonth, viewMode]);
+    return [...sourceRows]
+      .sort((a, b) => b.revenue - a.revenue)
+      .slice(0, rowLimit);
+  }, [allRows, currentMonth, isMidViewport, viewMode]);
 
   const subtitle =
     viewMode === "mtd"
@@ -180,7 +205,11 @@ export default function TopProducts() {
                 <div className={styles.product}>
                   <div className={styles.avatar}>
                     <Image
-                      src={productIconMap[row.product as keyof typeof productIconMap]}
+                      src={
+                        productIconMap[
+                          row.product as keyof typeof productIconMap
+                        ]
+                      }
                       alt=""
                       className={styles.productIcon}
                     />
@@ -195,12 +224,20 @@ export default function TopProducts() {
                 </div>
 
                 <span className={styles.dist}>{row.topLocation}</span>
-                <span className={styles.sales}>{formatNumber(row.unitsSold)}</span>
-                <span className={`${styles.growth} ${getGrowthClass(row.growthPct)}`}>
+                <span className={styles.sales}>
+                  {formatNumber(row.unitsSold)}
+                </span>
+                <span
+                  className={`${styles.growth} ${getGrowthClass(row.growthPct)}`}
+                >
                   {formatGrowth(row.growthPct)}
                 </span>
-                <span className={styles.revenue}>{formatCurrency(row.revenue)}</span>
-                <span className={`${styles.badge} ${getBadgeClass(row.status)}`}>
+                <span className={styles.revenue}>
+                  {formatCurrency(row.revenue)}
+                </span>
+                <span
+                  className={`${styles.badge} ${getBadgeClass(row.status)}`}
+                >
                   {row.status}
                 </span>
               </div>

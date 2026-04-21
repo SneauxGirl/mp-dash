@@ -24,7 +24,7 @@ function polarToCartesian(
   cx: number,
   cy: number,
   radius: number,
-  angleInDegrees: number
+  angleInDegrees: number,
 ) {
   const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180;
 
@@ -39,7 +39,7 @@ function describeArc(
   cy: number,
   radius: number,
   startAngle: number,
-  endAngle: number
+  endAngle: number,
 ) {
   const start = polarToCartesian(cx, cy, radius, endAngle);
   const end = polarToCartesian(cx, cy, radius, startAngle);
@@ -89,135 +89,142 @@ export default function ExpenseGroups() {
             <p className={styles.subtitle} />
           </div>
 
-<div className={styles.headerTotal}>
-  <span className={styles.totalLabel}>YTD</span>
-  <span className={styles.totalValue}>{formatCurrency(trackedTotal)}</span>
-</div>
+          <div className={styles.headerTotal}>
+            <span className={styles.totalLabel}>YTD</span>
+            <span className={styles.totalValue}>
+              {formatCurrency(trackedTotal)}
+            </span>
+          </div>
         </header>
 
         <div className={styles.layout}>
-          <section className={styles.ringsPanel} aria-label="Expense group rings">
+          <section
+            className={styles.ringsPanel}
+            aria-label="Expense group rings"
+          >
             <div className={styles.ringsPanelInner} aria-hidden="true">
-            <div className={styles.radarGrid} />
+              <div className={styles.radarGrid} />
 
-            <div className={styles.chartShell}>
-              <div className={styles.labelColumn} aria-hidden="true">
-                {groups.map((group) => (
-                  <div
-                    key={`${group.id}-tag`}
-                    className={`${styles.ringLabel} ${styles[`label${group.id.charAt(0).toUpperCase()}${group.id.slice(1)}`]}`}
-                    style={{ color: accentVars[group.accent] }}
+              <div className={styles.chartShell}>
+                <div className={styles.labelColumn} aria-hidden="true">
+                  {groups.map((group) => (
+                    <div
+                      key={`${group.id}-tag`}
+                      className={`${styles.ringLabel} ${styles[`label${group.id.charAt(0).toUpperCase()}${group.id.slice(1)}`]}`}
+                      style={{ color: accentVars[group.accent] }}
+                    >
+                      {group.label}
+                    </div>
+                  ))}
+                </div>
+
+                <div className={styles.ringFrame}>
+                  <svg
+                    className={styles.ringSvg}
+                    viewBox={`0 0 ${chartSize} ${chartSize}`}
+                    aria-hidden="true"
                   >
-                    {group.label}
-                  </div>
-                ))}
-              </div>
+                    {ringConfig.map((config) => {
+                      const group = groups.find(
+                        (item) => item.id === config.id,
+                      )!;
+                      const accent = accentVars[group.accent];
 
-              <div className={styles.ringFrame}>
-                <svg
-                  className={styles.ringSvg}
-                  viewBox={`0 0 ${chartSize} ${chartSize}`}
-                  aria-hidden="true"
-                >
-                  {ringConfig.map((config) => {
-                    const group = groups.find((item) => item.id === config.id)!;
-                    const accent = accentVars[group.accent];
+                      const totalBudget = Math.max(group.amount, 1);
+                      const paidRatio = Math.max(
+                        0,
+                        Math.min(group.paid / totalBudget, 1),
+                      );
+                      const upcomingRatio = Math.max(
+                        0,
+                        Math.min(group.upcoming / totalBudget, 1 - paidRatio),
+                      );
 
-                    const totalBudget = Math.max(group.amount, 1);
-                    const paidRatio = Math.max(
-                      0,
-                      Math.min(group.paid / totalBudget, 1)
-                    );
-                    const upcomingRatio = Math.max(
-                      0,
-                      Math.min(group.upcoming / totalBudget, 1 - paidRatio)
-                    );
+                      const paidDegrees = paidRatio * ringSpanDegrees;
+                      const upcomingDegrees = upcomingRatio * ringSpanDegrees;
 
-                    const paidDegrees = paidRatio * ringSpanDegrees;
-                    const upcomingDegrees = upcomingRatio * ringSpanDegrees;
+                      const radius =
+                        (chartSize * (config.size / 100) - config.stroke) / 2;
 
-                    const radius =
-                      ((chartSize * (config.size / 100)) - config.stroke) / 2;
+                      const trackArc = describeArc(
+                        center,
+                        center,
+                        radius,
+                        ringStartAngle,
+                        ringStartAngle + ringSpanDegrees,
+                      );
 
-                    const trackArc = describeArc(
-                      center,
-                      center,
-                      radius,
-                      ringStartAngle,
-                      ringStartAngle + ringSpanDegrees
-                    );
+                      const paidEndAngle = ringStartAngle + paidDegrees;
+                      const upcomingEndAngle = paidEndAngle + upcomingDegrees;
 
-                    const paidEndAngle = ringStartAngle + paidDegrees;
-                    const upcomingEndAngle = paidEndAngle + upcomingDegrees;
+                      const paidArc =
+                        paidDegrees > 0
+                          ? describeArc(
+                              center,
+                              center,
+                              radius,
+                              ringStartAngle,
+                              paidEndAngle,
+                            )
+                          : "";
 
-                    const paidArc =
-                      paidDegrees > 0
-                        ? describeArc(
-                            center,
-                            center,
-                            radius,
-                            ringStartAngle,
-                            paidEndAngle
-                          )
-                        : "";
+                      const upcomingArc =
+                        upcomingDegrees > 0
+                          ? describeArc(
+                              center,
+                              center,
+                              radius,
+                              paidEndAngle,
+                              upcomingEndAngle,
+                            )
+                          : "";
 
-                    const upcomingArc =
-                      upcomingDegrees > 0
-                        ? describeArc(
-                            center,
-                            center,
-                            radius,
-                            paidEndAngle,
-                            upcomingEndAngle
-                          )
-                        : "";
-
-                    return (
-                      <g key={group.id}>
-                        <path
-                          d={trackArc}
-                          className={styles.ringTrack}
-                          style={{ strokeWidth: config.stroke }}
-                        />
-
-                        {upcomingArc && (
+                      return (
+                        <g key={group.id}>
                           <path
-                            d={upcomingArc}
-                            className={styles.ringUpcoming}
-                            style={
-                              {
-                                stroke: accent,
-                                strokeWidth: config.stroke,
-                              } as React.CSSProperties
-                            }
+                            d={trackArc}
+                            className={styles.ringTrack}
+                            style={{ strokeWidth: config.stroke }}
                           />
-                        )}
 
-                        {paidArc && (
-                          <path
-                            d={paidArc}
-                            className={styles.ringPaid}
-                            style={
-                              {
-                                stroke: accent,
-                                strokeWidth: config.stroke,
-                              } as React.CSSProperties
-                            }
-                          />
-                        )}
-                      </g>
-                    );
-                  })}
-                </svg>
+                          {upcomingArc && (
+                            <path
+                              d={upcomingArc}
+                              className={styles.ringUpcoming}
+                              style={
+                                {
+                                  stroke: accent,
+                                  strokeWidth: config.stroke,
+                                } as React.CSSProperties
+                              }
+                            />
+                          )}
 
-                <div className={styles.ringCore}>
-                  <div>
-                    <span className={styles.coreLabel}>Budget</span>
-                    <span className={styles.coreValue}>2026</span>
+                          {paidArc && (
+                            <path
+                              d={paidArc}
+                              className={styles.ringPaid}
+                              style={
+                                {
+                                  stroke: accent,
+                                  strokeWidth: config.stroke,
+                                } as React.CSSProperties
+                              }
+                            />
+                          )}
+                        </g>
+                      );
+                    })}
+                  </svg>
+
+                  <div className={styles.ringCore}>
+                    <div>
+                      <span className={styles.coreLabel}>Budget</span>
+                      <span className={styles.coreValue}>2026</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
           </section>
 

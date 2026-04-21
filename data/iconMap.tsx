@@ -4,10 +4,7 @@ import type { SVGProps } from "react";
 // BASE ICON COMPONENT
 // =======================
 
-function IconBase({
-  children,
-  ...props
-}: SVGProps<SVGSVGElement>) {
+function IconBase({ children, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" {...props}>
       {children}
@@ -157,8 +154,8 @@ export const kpiIconMap = {
   "top-venue": NavigationIcon,
   "revenue-per-event": ActivityIcon,
   "next-7-days": CalendarIcon,
-  "underperformer": AlertCircleIcon,
-  "margin": BarChartIcon,
+  underperformer: AlertCircleIcon,
+  margin: BarChartIcon,
   "labor-rate": PieChartIcon,
   "cost-overrun": CreditCardIcon,
 } as const;

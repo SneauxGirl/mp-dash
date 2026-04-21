@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Inter} from "next/font/google";
-import "../styles/globals.scss"
-import "../styles/layout.scss"
+import { Inter } from "next/font/google";
+import "../styles/globals.scss";
+import "../styles/layout.scss";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -21,14 +21,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
       <body>{children}</body>
     </html>
   );

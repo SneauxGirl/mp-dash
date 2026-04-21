@@ -268,20 +268,24 @@
     gap: var(--space-2);
     order: 1;
   }
-    .mobileMenuButton {
+  .mobileMenuButton {
     display: inline-flex;
     width: 28px;
     height: 28px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.14);
     background:
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.16), transparent 35%),
-    linear-gradient(
-      135deg,
-      rgba(141, 252, 114, 0.8) 0%,
-      #a8cf5a 30%,
-      rgba(255, 215, 92, 0.9) 70%,
-      #ffbf3c 100%
+      radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.16),
+        transparent 35%
+      ),
+      linear-gradient(
+        135deg,
+        rgba(141, 252, 114, 0.8) 0%,
+        #a8cf5a 30%,
+        rgba(255, 215, 92, 0.9) 70%,
+        #ffbf3c 100%
       );
     color: rgba(18, 24, 14, 0.95);
     box-shadow:
@@ -294,12 +298,16 @@
   .mobileMenuButton:focus-visible {
     border-color: rgba(255, 255, 255, 0.2);
     background:
-      radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.2), transparent 34%),
+      radial-gradient(
+        circle at 32% 30%,
+        rgba(255, 255, 255, 0.2),
+        transparent 34%
+      ),
       linear-gradient(
         135deg,
         rgba(255, 215, 92, 0.68) 0%,
-         rgba(255, 215, 92, 0.98) 35%,
-        rgba(141, 252, 114, 0.80)  95%,
+        rgba(255, 215, 92, 0.98) 35%,
+        rgba(141, 252, 114, 0.8) 95%,
         rgba(141, 252, 114, 0.58) 100%
       );
     color: rgba(12, 18, 10, 1);
@@ -345,7 +353,6 @@
   }
 
   .tickerTrack {
-
     gap: var(--space-5);
   }
 }
@@ -409,7 +416,7 @@
     margin-bottom: var(--space-2);
   }
 
-    .eventItem{
+  .eventItem {
     font-size: var(--font-size-lg);
   }
 

@@ -10,8 +10,6 @@
   gap: var(--space-5);
 }
 
-
-
 .header {
   display: flex;
   align-items: flex-start;
@@ -109,8 +107,16 @@
   min-height: 250px;
   padding: var(--space-4);
   background:
-    radial-gradient(circle at 62% 50%, rgba(255, 215, 92, 0.022), transparent 24%),
-    radial-gradient(circle at 62% 50%, rgba(142, 247, 120, 0.018), transparent 40%),
+    radial-gradient(
+      circle at 62% 50%,
+      rgba(255, 215, 92, 0.022),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 62% 50%,
+      rgba(142, 247, 120, 0.018),
+      transparent 40%
+    ),
     linear-gradient(
       180deg,
       rgba(255, 255, 255, 0.02),
@@ -135,9 +141,15 @@
   background:
     linear-gradient(transparent 95%, rgba(255, 255, 255, 0.05) 96%),
     linear-gradient(90deg, transparent 95%, rgba(255, 255, 255, 0.04) 96%);
-  background-size: 100% 46px, 46px 100%;
+  background-size:
+    100% 46px,
+    46px 100%;
   mask-image: radial-gradient(circle at 62% 50%, black 24%, transparent 72%);
-  -webkit-mask-image: radial-gradient(circle at 62% 50%, black 24%, transparent 72%);
+  -webkit-mask-image: radial-gradient(
+    circle at 62% 50%,
+    black 24%,
+    transparent 72%
+  );
   pointer-events: none;
 }
 
@@ -245,7 +257,11 @@
   place-items: center;
   text-align: center;
   background:
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 35%),
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.05),
+      transparent 35%
+    ),
     linear-gradient(180deg, rgba(16, 18, 24, 0.94), rgba(8, 10, 14, 0.98));
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow:
@@ -415,32 +431,6 @@
   }
 }
 
-
-
-@media (max-width: 900px) {
-  .header {
-    gap: var(--space-3);
-  }
-
-  /* Panel size unchanged; only outer spacing adjusts */
-  .ringsPanel {
-    align-self: center;
-  }
-
-  .legendItem {
-    grid-template-columns: auto 1fr;
-  }
-
-  .legendStats {
-    grid-column: 2;
-    text-align: left;
-  }
-
-  .dotKey {
-    align-items: flex-start;
-  }
-}
-
 @media (max-width: 600px) {
   /* [Swatch | label] | amount | % — stats wrapper flattened so amount/% are own columns */
   .legendItem {
@@ -469,6 +459,6 @@
 
   .legendAmount {
     margin-bottom: 0;
-    margin-right: .4rem;
+    margin-right: 0.4rem;
   }
 }

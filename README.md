@@ -4,15 +4,17 @@ This is a responsive dashboard UI for an SMB operating across live service, reta
 
 It partners at-a-glance overviews with agentic assistance, turning data points into action items without lag or loss.
 
-![MP Dashboard](./docs/ReferencePhotos/MDash-Phase4.png)
+![MP Dashboard](./docs/ReferencePhotos/MPDash-complete.png)
 
 ## Build Stage Notes
+
 Phase 1: Create concept, draft components and layout
 Phase 2: Plug in components and finalize globals
 Phase 3: Standardize dummy data and attach logic
-**Phase 4:** Standardize content, address responsiveness
+Phase 4: Standardize content, address responsiveness
 
 ## Tech Stack
+
 - Next.js
 - Typescript
 - SCSS
@@ -37,4 +39,5 @@ bun dev
 4. Currently mocked to dummy data. See [data/dashboardData.ts](./data/dashboardData.ts) for template mapping
 
 ## Credit
+
 Designed and developed by Heather Hugo 2026

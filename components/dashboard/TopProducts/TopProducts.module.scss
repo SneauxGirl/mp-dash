@@ -75,7 +75,6 @@
 .tableWrap {
   @include glassSurface;
 
-
   overflow-x: auto;
   min-width: 0;
 }
@@ -152,7 +151,7 @@
   width: 36px;
   height: 36px;
   border-radius: 10px;
-position: relative;
+  position: relative;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -160,18 +159,18 @@ position: relative;
 
   /* BASE */
   background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 40%),
-    linear-gradient(
-      135deg,
-      rgba(20, 40, 28, 0.95),
-      rgba(10, 18, 14, 0.95)
-    );
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.08),
+      transparent 40%
+    ),
+    linear-gradient(135deg, rgba(20, 40, 28, 0.95), rgba(10, 18, 14, 0.95));
 
   /* EDGE ENERGY */
-box-shadow:
-  inset 0 0 0 1px rgba(141, 252, 114, 0.18),
-  0 0 0 1px rgba(141, 252, 114, 0.35),   /* crisp lime ring */
-  0 0 0 1px rgba(255, 215, 92, 0.2);    /* outer gold ring */
+  box-shadow:
+    inset 0 0 0 1px rgba(141, 252, 114, 0.18),
+    0 0 0 1px rgba(141, 252, 114, 0.35),
+    /* crisp lime ring */ 0 0 0 1px rgba(255, 215, 92, 0.2); /* outer gold ring */
 }
 
 .avatar::before {
@@ -276,28 +275,7 @@ box-shadow:
 
 @media (max-width: 980px) {
   .header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .controls {
-    align-self: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .tableHead {
-    display: none;
-  }
-
-  .row {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-  }
-}
-
-@media (max-width: 980px) {
-  .header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     gap: var(--space-3);
   }
@@ -307,16 +285,21 @@ box-shadow:
     flex-wrap: wrap;
   }
 
-  /* kill table head */
-  .tableHead {
-    display: none;
+  /* keep row/table layout at <=980 (no card/column mode) */
+  .tableHead,
+  .row {
+    grid-template-columns:
+      minmax(0, 2fr)
+      minmax(0, 1fr)
+      minmax(0, 0.8fr)
+      minmax(0, 0.8fr)
+      minmax(0, 1.2fr)
+      minmax(0, 0.8fr);
+    gap: var(--space-3);
   }
 
-  /* turn rows into compact cards */
   .row {
-    grid-template-columns: 1fr;
-    gap: var(--space-2);
-    padding: var(--space-2);
+    padding: var(--space-3);
   }
 
   /* tighter product block */
@@ -350,11 +333,9 @@ box-shadow:
     font-size: var(--font-size-xs);
   }
 
-  /* group metrics into a row */
+  /* keep each metric in its own grid cell */
   .row > :not(.product) {
-    display: inline-flex;
-    justify-content: space-between;
-    gap: var(--space-2);
+    display: block;
   }
 
   /* tighten badges */
@@ -364,7 +345,7 @@ box-shadow:
   }
 
   .row {
-  border-radius: var(--radius-md);
-  background: rgba(255,255,255,0.02);
-}
+    border-radius: 0;
+    background: none;
+  }
 }
