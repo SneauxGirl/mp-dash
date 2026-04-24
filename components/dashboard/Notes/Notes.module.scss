@@ -106,19 +106,54 @@
 }
 
 .iconBtn {
+  appearance: none;
+  -webkit-appearance: none;
   width: 36px;
   height: 36px;
+  padding: 0;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 215, 92, 0.14);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.03),
-    rgba(255, 255, 255, 0.015)
-  );
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
   color: var(--text-soft);
-  font-size: var(--font-size-sm);
-  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
   cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.iconBtn:hover,
+.iconBtn:focus-visible {
+  border-color: rgba(200, 255, 90, 0.3);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow:
+    0 0 10px rgba(200, 255, 90, 0.12),
+    inset 0 0 6px rgba(200, 255, 90, 0.05);
+}
+
+.iconBtn:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 0 6px rgba(200, 255, 90, 0.08),
+    inset 0 0 8px rgba(0, 0, 0, 0.25);
+}
+
+.iconBtn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
 
 .primaryBtn {
@@ -303,7 +338,11 @@
   .iconBtn {
     width: 30px;
     height: 30px;
-    font-size: var(--font-size-xs);
+  }
+
+  .iconBtn svg {
+    width: 14px;
+    height: 14px;
   }
 
   .primaryBtn {

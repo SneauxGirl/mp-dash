@@ -37,11 +37,18 @@ export default function Notes({ compact = false }: NotesProps) {
 
             <div className={styles.actions}>
               <button className={styles.iconBtn} aria-label="Voice input">
-                🎤
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 1 0-6 0v4a3 3 0 0 0 3 3Z" />
+                  <path d="M6 11a6 6 0 0 0 12 0" />
+                  <path d="M12 17v4" />
+                  <path d="M8.5 21h7" />
+                </svg>
               </button>
 
               <button className={styles.iconBtn} aria-label="Attach context">
-                📎
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M21 11.5 11.8 20.7a6 6 0 1 1-8.5-8.5l9.2-9.2a4 4 0 1 1 5.7 5.7L9.7 17.2a2 2 0 0 1-2.8-2.8l7.8-7.8" />
+                </svg>
               </button>
 
               <button className={styles.primaryBtn}>Submit</button>

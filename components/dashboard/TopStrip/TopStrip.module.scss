@@ -456,3 +456,14 @@
     gap: var(--space-5);
   }
 }
+
+/* Keep hamburger toggle aligned with sidebar breakpoint */
+@media (max-width: 980px) {
+  .mobileTitleRow {
+    display: flex !important;
+  }
+
+  .mobileMenuButton {
+    display: inline-flex !important;
+  }
+}
