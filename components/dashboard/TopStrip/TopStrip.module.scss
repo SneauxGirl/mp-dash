@@ -351,10 +351,6 @@
     mask-image: none;
     -webkit-mask-image: none;
   }
-
-  .tickerTrack {
-    gap: var(--space-5);
-  }
 }
 
 @media (max-width: 700px) {
@@ -450,10 +446,6 @@
       inset 0 0 18px rgba(255, 215, 92, 0.025);
     mask-image: none;
     -webkit-mask-image: none;
-  }
-
-  .tickerTrack {
-    gap: var(--space-5);
   }
 }
 

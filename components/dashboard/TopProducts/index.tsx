@@ -192,9 +192,31 @@ export default function TopProducts() {
         <div className={styles.tableWrap}>
           <div className={styles.tableHead}>
             <span>Product</span>
-            <span>Top Location</span>
-            <span>Net Sales</span>
-            <span>Growth</span>
+
+            <span className={`${styles.headCell} ${styles.headCellLocation}`}>
+              <span className={styles.headLabelLong}>Top Location</span>
+              <span
+                className={styles.headLabelShort}
+                role="img"
+                aria-label="Top location"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 21s-6.5-5.12-6.5-10a6.5 6.5 0 0 1 13 0C18.5 15.88 12 21 12 21Z" />
+                  <circle cx="12" cy="11" r="2" />
+                </svg>
+              </span>
+            </span>
+
+            <span className={styles.headCell}>
+              <span className={styles.headLabelLong}>Net Sales</span>
+              <span className={styles.headLabelShort}>Net</span>
+            </span>
+
+            <span className={styles.headCell}>
+              <span className={styles.headLabelLong}>Growth</span>
+              <span className={styles.headLabelShort}>%</span>
+            </span>
+
             <span>Revenue</span>
             <span>Status</span>
           </div>
