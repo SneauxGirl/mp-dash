@@ -6,6 +6,10 @@ It partners at-a-glance overviews with agentic assistance, turning data points i
 
 ![MP Dashboard](./docs/ReferencePhotos/MPDash-complete.png)
 
+## 🚀 Live Demo
+
+[View the App →](https://mp-dash.vercel.app)
+
 ## Build Stage Notes
 
 Phase 1: Create concept, draft components and layout
